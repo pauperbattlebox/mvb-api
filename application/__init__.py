@@ -14,4 +14,12 @@ def create_app(config_file='config.py'):
 
     with app.app_context():
 
+        from .core.routes import core
+        from .set.routes import sets
+        from .cards.routes import cards
+
+        app.register_blueprint(core)
+        app.register_blueprint(sets)
+        app.register_blueprint(cards)
+
         return app
