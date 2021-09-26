@@ -1,3 +1,10 @@
+*.env
+.env
+config.py
+.json
+*.json
+/logs
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
