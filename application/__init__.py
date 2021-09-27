@@ -1,5 +1,5 @@
 from flask import Flask
-from .extensions import db, migrate
+from .extensions import db, migrate#, marshmallow
 
 
 def create_app(config_file='config.py'):
@@ -8,6 +8,7 @@ def create_app(config_file='config.py'):
 
     db.init_app(app)
     migrate.init_app(app, db)
+    #marshmallow.init_app(app)
 
     from application import models
 

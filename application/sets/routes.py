@@ -1,5 +1,8 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 from flask import current_app as app
+
+from application.models import Sets
+from application.schemas import SetsSchema
 
 sets = Blueprint('sets', __name__)
 
@@ -8,7 +11,13 @@ sets = Blueprint('sets', __name__)
 @sets.route('/sets')
 def get_all_sets():
 
-    return ("All sets")
+    sets_schema = SetsSchema(many=True)
+
+    q = Sets.query.all()
+    print(q)
+
+    result = sets_schema.dump(q)
+    return result
 
 
 ###GET SET BY CS NAME
