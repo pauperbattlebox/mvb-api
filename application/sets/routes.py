@@ -23,3 +23,9 @@ def get_all_sets():
 def get_set_by_set_name(set_name):
 
     return set_name
+####GET SET BY MTGJSON CODE
+####THIS MATCHES *.json file
+@sets.route('/sets/<mtgjson_code>')
+def get_set_by_mtgjson_code(mtgjson_code):
+
+    return set_name
