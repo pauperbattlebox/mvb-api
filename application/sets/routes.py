@@ -12,9 +12,9 @@ sets = Blueprint('sets', __name__)
 def get_all_sets():
 
     q = Sets.query.all()
-    print(q)
 
     result = sets_schema.dump(q)
+
     return jsonify(result)
 
 
@@ -22,10 +22,20 @@ def get_all_sets():
 @sets.route('/sets/<set_name>')
 def get_set_by_set_name(set_name):
 
-    return set_name
+    q = Sets.query.filter(Sets.cs_name == set_name).first_or_404()
+
+    result = set_schema.dump(q)
+
+    return jsonify(result)
+
+
 ####GET SET BY MTGJSON CODE
 ####THIS MATCHES *.json file
-@sets.route('/sets/<mtgjson_code>')
+@sets.route('/sets/mtgjsoncode/<mtgjson_code>')
 def get_set_by_mtgjson_code(mtgjson_code):
 
-    return set_name
+    q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code).first_or_404()
+
+    result = set_schema.dump(q)
+
+    return jsonify(result)

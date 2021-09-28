@@ -5,7 +5,7 @@ class SetsSchema(Schema):
 
     cs_id = fields.Int()
     cs_name = fields.Str()
-    # mtgjson_code = fields.Str()
+    mtgjson_code = fields.Str()
     # map = fields.Str()
 
 set_schema = SetsSchema()
