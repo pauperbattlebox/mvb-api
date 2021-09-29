@@ -1,6 +1,5 @@
 *.env
 .env
-config.py
 .json
 *.json
 /logs
