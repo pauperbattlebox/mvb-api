@@ -8,7 +8,7 @@ cards = Blueprint('cards', __name__)
 
 
 ################ GET MULTIPLE CARDS ###########################
-####GET CARDS BY CARD NAME
+####GET CARDS BY CS CARD NAME
 @cards.route('/cards/<card_name>')
 def get_by_card_name(card_name):
 
@@ -17,7 +17,7 @@ def get_by_card_name(card_name):
     result = cards_schema.dump(q)
 
     return jsonify(result)
-    
+
 
 ####GET CARDS BY CS SET
 @cards.route('/cards/set/<cs_set>')
