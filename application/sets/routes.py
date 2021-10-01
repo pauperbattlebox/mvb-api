@@ -45,7 +45,7 @@ def get_set_by_mtgjson_code(mtgjson_code):
 
 ####GET SET BY CS ID
 @sets.route(current_version + '/sets/cardsphere/<cs_id>')
-def get_set_by_cs_id(mtgjson_code):
+def get_set_by_cs_id(cs_id):
 
     q = Sets.query.filter(Sets.cs_id == cs_id).first_or_404()
 
