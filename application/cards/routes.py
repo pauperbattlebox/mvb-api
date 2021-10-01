@@ -68,7 +68,7 @@ def get_by_mtgjson_id(mtgjson_id):
 
 
 ####GET CARD BY SCRYFALL ID
-@cards.route(current_version + '/cards/sryfall/<scryfall_id>')
+@cards.route(current_version + '/cards/scryfall/<scryfall_id>')
 def get_by_scryfall_id(scryfall_id):
 
     q = Cards.query.filter(Cards.scryfall_id == scryfall_id).first_or_404()
@@ -89,11 +89,14 @@ def get_by_set_and_name(set_name, card_name):
     return jsonify(result)
 
 ####GET CARD BY SET CODE AND CARD NAME
-@cards.route(current_version + '/cards/<set_code>/<card_name>')
-def get_by_set_code_and_name(set_code, card_name):
-
-    q = Cards.query.filter(Cards.mtgjson_code == set_code, Cards.name == card_name).all()
-
-    result = cards_schema.dump(q)
-
-    return jsonify(result)
+#
+####JOINS
+#
+# @cards.route(current_version + '/cards/<set_code>/<card_name>')
+# def get_by_set_code_and_name(set_code, card_name):
+#
+#     q = Cards.query.filter(Cards.mtgjson_code == set_code, Cards.name == card_name).all()
+#
+#     result = cards_schema.dump(q)
+#
+#     return jsonify(result)

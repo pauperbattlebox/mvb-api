@@ -33,10 +33,21 @@ def get_set_by_set_name(set_name):
 
 ####GET SET BY MTGJSON CODE
 ####THIS MATCHES *.json file
-@sets.route(current_version + '/sets/mtgjsoncode/<mtgjson_code>')
+@sets.route(current_version + '/sets/code/<mtgjson_code>')
 def get_set_by_mtgjson_code(mtgjson_code):
 
     q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code).first_or_404()
+
+    result = set_schema.dump(q)
+
+    return jsonify(result)
+
+
+####GET SET BY CS ID
+@sets.route(current_version + '/sets/cardsphere/<cs_id>')
+def get_set_by_cs_id(mtgjson_code):
+
+    q = Sets.query.filter(Sets.cs_id == cs_id).first_or_404()
 
     result = set_schema.dump(q)
 
