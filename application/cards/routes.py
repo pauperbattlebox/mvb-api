@@ -21,6 +21,17 @@ def get_by_card_name(card_name):
     return jsonify(result)
 
 
+####SEARCH BY CARD NAME
+@cards.route(current_version + 'cards/search/<card_name>')
+def search_by_card_name(card_name):
+
+    q = Cards.query.filter(Cards.name.match('%' + card_name + '%')).all()
+
+    result = cards_schema.dump(q)
+
+    return jsonify(result)
+
+
 ####GET CARDS BY CS SET
 @cards.route(current_version + '/cards/set/<cs_set>')
 def get_by_set(cs_set):
