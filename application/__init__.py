@@ -1,11 +1,14 @@
 from flask import Flask
+
 from .extensions import db, migrate
+
+current_version = '/api/v1/'
 
 def create_app():
     app = Flask(__name__)
 
     app.config.from_pyfile("config.py")
-    
+
 
     db.init_app(app)
     migrate.init_app(app, db)
