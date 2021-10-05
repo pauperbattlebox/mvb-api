@@ -23,4 +23,31 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
     },
     ...
   ]
+  ```
+</details>
+
+<details>
+  <summary>GET /sets/{cardsphere_id}</summary>
+    
+  Returns the specified Cardsphere set and a list of the cards in the set.
+  
+  ```
+  {
+    "cs_id": 755,
+    "cs_name": "10th Edition",
+    "mtgjson_code": "10E",
+    "cards": [{
+      "cs_id": 1,
+      "url": "",
+      "name": "Abundance",
+      "edition": "10th Edition",
+      "is_foil": true,
+      "mtgjson_id": "",
+      "scryfall_id": "",
+      "collector_number": ""
+    },
+    ...
+    ]
+  }
+  ```
 </details>
