@@ -27,9 +27,9 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
 </details>
 
 <details>
-  <summary>GET /sets/{cardsphere_id}</summary>
+  <summary>GET /sets/{cs_id}</summary>
     
-  Returns the specified Cardsphere set and a list of the cards in the set.
+  Returns the Cardsphere set specified by the cs_id and a list of the cards in the set.
   
   ```
   {
@@ -48,6 +48,128 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
     },
     ...
     ]
+  }
+  ```
+</details>
+
+<details>
+  <summary>GET /sets/mtgjson/{mtgjson_code}</summary>
+  
+  Returns the Cardsphere set specified by the MTGJSON set code and a list of the cards in the set.
+  ```
+  {
+    "cs_id": 755,
+    "cs_name": "10th Edition",
+    "mtgjson_code": "10E",
+    "cards": [{
+      "cs_id": 1,
+      "url": "",
+      "name": "Abundance",
+      "edition": "10th Edition",
+      "is_foil": true,
+      "mtgjson_id": "",
+      "scryfall_id": "",
+      "collector_number": ""
+    },
+    ...
+    ]
+  }
+  ```
+</details>
+
+<details>
+  <summary>GET /cards/{cs_id}</summary>
+  
+  Returns the Cardsphere card details specified by the cs_id.
+  
+  `includeRelatedPrintings` (bool, optional) - Query parameter to include the other printings of the specified card. 
+  
+  ```
+  {
+    "cs_id": 1,
+    "url": "",
+    "name": "Abundance",
+    "edition": "10th Edition",
+    "is_foil": true,
+    "mtgjson_id": "",
+    "scryfall_id": "",
+    "collector_number": "",
+    "related_printings": [{
+      "cs_id": 2,
+      "url": "",
+      "name": "Abundance",
+      "edition": "10th Edition",
+      "is_foil": false,
+      "mtgjson_id": "",
+      "scryfall_id": "",
+      "collector_number": ""
+    },
+    {
+      "cs_id": 46479,
+      "url": "",
+      "name": "Abundance",
+      "edition": "Urza's Saga",
+      "is_foil": false,
+      "mtgjson_id": "",
+      "scryfall_id": "",
+      "collector_number": ""
+    },
+    ...
+    ]
+  }
+  ```
+</details>
+
+<details>
+  <summary>GET /cards/mtgjson/{mtgjson_id}</summary>
+  
+  Returns the Cardsphere card details specified by the MTGJSON Id.
+  ```
+  {
+    "cs_id": 1,
+    "url": "",
+    "name": "Abundance",
+    "edition": "10th Edition",
+    "is_foil": true,
+    "mtgjson_id": "",
+    "scryfall_id": "",
+    "collector_number": ""
+  }
+  ```
+</details>
+
+<details>
+  <summary>GET /cards/scryfall/{scryfall_id}</summary>
+  
+  Returns the Cardsphere card details specified by the Scryfall Id.
+  ```
+  {
+    "cs_id": 1,
+    "url": "",
+    "name": "Abundance",
+    "edition": "10th Edition",
+    "is_foil": true,
+    "mtgjson_id": "",
+    "scryfall_id": "",
+    "collector_number": ""
+  }
+  ```
+</details>
+
+<details>
+  <summary>GET /cards/search/{string}</summary>
+  
+  Returns the Cardsphere card details of the card whose name best matches the search string provided.
+  ```
+  {
+    "cs_id": 1,
+    "url": "",
+    "name": "Abundance",
+    "edition": "10th Edition",
+    "is_foil": true,
+    "mtgjson_id": "",
+    "scryfall_id": "",
+    "collector_number": ""
   }
   ```
 </details>
