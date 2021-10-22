@@ -25,16 +25,19 @@ def search_by_card_name(card_name):
 ####GET CARD BY CS ID
 @cards.route(current_version + '/cards/<cs_id>')
 def get_by_cs_id(cs_id):
-    r = request.args.get('includeRelatedPrintings', None)
+    args = request.args
     q = Cards.query.filter(Cards.cs_id == cs_id).first_or_404()
 
     result = card_with_related_printings_schema.dump(q)
 
-    if r is not None:
-        rp = Cards.query.filter(Cards.name == result['card_name'], Cards.cs_id != result['cs_id']).all()
+    if 'includeRelatedPrintings' in args:
+        if args.get('includeRelatedPrintings').lower() == 'true':
+            rp = Cards.query.filter(Cards.name == result['name'], Cards.cs_id != result['cs_id']).order_by(Cards.edition.asc(), Cards.is_foil.asc()).all()
 
-        if rp is not None:
-            result['related_printings'] = cards_schema.dump(rp)    
+            if len(rp) > 0:
+                result['related_printings'] = cards_schema.dump(rp)
+            else:
+                result['related_printings'] = None
 
     return jsonify(result)
 
