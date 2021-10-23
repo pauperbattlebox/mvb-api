@@ -30,14 +30,14 @@ def get_by_cs_id(cs_id):
 
     result = card_with_related_printings_schema.dump(q)
 
+    result['related_printings'] = None
+    
     if 'includeRelatedPrintings' in args:
         if args.get('includeRelatedPrintings').lower() == 'true':
             rp = Cards.query.filter(Cards.name == result['name'], Cards.cs_id != result['cs_id']).order_by(Cards.edition.asc(), Cards.is_foil.asc()).all()
 
             if len(rp) > 0:
                 result['related_printings'] = cards_schema.dump(rp)
-            else:
-                result['related_printings'] = None
 
     return jsonify(result)
 
