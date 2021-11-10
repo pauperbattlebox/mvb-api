@@ -7,3 +7,5 @@ load_dotenv(path.join(basedir, '.env'))
 SECRET_KEY = environ.get('SECRET_KEY')
 SQLALCHEMY_TRACK_MODIFICATIONS=False
 SQLALCHEMY_DATABASE_URI = environ.get('SQLALCHEMY_DATABASE_URI')
+
+JSON_SORT_KEYS = False
