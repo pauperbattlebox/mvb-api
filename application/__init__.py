@@ -21,9 +21,11 @@ def create_app():
         from .core.routes import core
         from .sets.routes import sets
         from .cards.routes import cards
+        from .errors.errors import errors
 
         app.register_blueprint(core)
         app.register_blueprint(sets)
         app.register_blueprint(cards)
+        app.register_blueprint(errors)
 
         return app
