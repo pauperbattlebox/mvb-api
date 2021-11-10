@@ -33,6 +33,9 @@ class SetsWithCardsSchema(Schema):
     mtgjson_code = fields.Str()
     cards = fields.List(fields.Nested(CardsSchema()))
 
+    class Meta:
+        ordered = True
+
 set_with_cards_schema = SetsWithCardsSchema()
 sets_with_cards_schema = SetsWithCardsSchema(many=True)
 
@@ -47,6 +50,9 @@ class CardsWithRelatedPrintingsSchema(Schema):
     scryfall_id = fields.Str()
     collector_number = fields.Str()
     related_printings = fields.List(fields.Nested(CardsSchema()))
+
+    class Meta:
+        ordered = True
 
 card_with_related_printings_schema = CardsWithRelatedPrintingsSchema()
 cards_with_related_printings_schema = CardsWithRelatedPrintingsSchema(many=True)
