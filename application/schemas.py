@@ -6,7 +6,6 @@ class SetsSchema(Schema):
     cs_id = fields.Int()
     cs_name = fields.Str()
     mtgjson_code = fields.Str()
-    # map = fields.Str()
 
 set_schema = SetsSchema()
 sets_schema = SetsSchema(many=True)
@@ -26,11 +25,8 @@ class CardsSchema(Schema):
 card_schema = CardsSchema()
 cards_schema = CardsSchema(many=True)
 
-class SetsWithCardsSchema(Schema):
+class SetsWithCardsSchema(SetsSchema):
 
-    cs_id = fields.Int()
-    cs_name = fields.Str()
-    mtgjson_code = fields.Str()
     cards = fields.List(fields.Nested(CardsSchema()))
 
     class Meta:
@@ -39,16 +35,8 @@ class SetsWithCardsSchema(Schema):
 set_with_cards_schema = SetsWithCardsSchema()
 sets_with_cards_schema = SetsWithCardsSchema(many=True)
 
-class CardsWithRelatedPrintingsSchema(Schema):
+class CardsWithRelatedPrintingsSchema(CardsSchema):
 
-    cs_id = fields.Int()
-    url = fields.Str()
-    name = fields.Str()
-    edition = fields.Str()
-    is_foil = fields.Boolean()
-    mtgjson_id = fields.Str()
-    scryfall_id = fields.Str()
-    collector_number = fields.Str()
     related_printings = fields.List(fields.Nested(CardsSchema()))
 
     class Meta:
