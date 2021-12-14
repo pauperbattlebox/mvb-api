@@ -14,7 +14,9 @@ cards = Blueprint('cards', __name__)
 @cards.route(current_version + 'cards/search/<card_name>')
 def search_by_card_name(card_name):
 
-    q = Cards.query.filter(Cards.name.match('%' + card_name + '%')).all()
+    search = f"%{card_name}%"
+    
+    q = Cards.query.filter(Cards.name.like(search)).all()
 
     result = cards_schema.dump(q)
 
@@ -26,7 +28,7 @@ def search_by_card_name(card_name):
 @cards.route(current_version + '/cards/<cs_id>')
 def get_by_cs_id(cs_id):
     args = request.args
-    
+
     q = Cards.query.filter(Cards.cs_id == cs_id).first_or_404()
 
     result = card_with_related_printings_schema.dump(q)
