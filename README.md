@@ -38,13 +38,14 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
     "mtgjson_code": "10E",
     "cards": [{
       "cs_id": 1,
-      "url": "",
+      "url": "/cards/1",
       "name": "Abundance",
       "edition": "10th Edition",
       "is_foil": true,
-      "mtgjson_id": "",
-      "scryfall_id": "",
-      "collector_number": ""
+      "mtgjson_id": "1669af17-d287-5094-b005-4b143441442f",
+      "scryfall_id": "46184f97-d5c9-4a98-9fd9-e19057ce9b7e",
+      "collector_number": "249",
+      "mtgjson_code": "10E"
     },
     ...
     ]
@@ -62,14 +63,15 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
     "cs_name": "10th Edition",
     "mtgjson_code": "10E",
     "cards": [{
-      "cs_id": 1,
-      "url": "",
-      "name": "Abundance",
       "edition": "10th Edition",
-      "is_foil": true,
-      "mtgjson_id": "",
-      "scryfall_id": "",
-      "collector_number": ""
+          "name": "Abundance",
+          "collector_number": "249",
+          "cs_id": 1,
+          "is_foil": true,
+          "mtgjson_id": "1669af17-d287-5094-b005-4b143441442f",
+          "url": "/cards/1",
+          "mtgjson_code": "10E",
+          "scryfall_id": "46184f97-d5c9-4a98-9fd9-e19057ce9b7e"
     },
     ...
     ]
@@ -87,32 +89,34 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
   ```
   {
     "cs_id": 1,
-    "url": "",
+    "url": "/cards/1",
     "name": "Abundance",
     "edition": "10th Edition",
     "is_foil": true,
-    "mtgjson_id": "",
-    "scryfall_id": "",
-    "collector_number": "",
+    "mtgjson_id": "1669af17-d287-5094-b005-4b143441442f",
+    "scryfall_id": "46184f97-d5c9-4a98-9fd9-e19057ce9b7e",
+    "collector_number": "249",
     "related_printings": [{
-      "cs_id": 2,
-      "url": "",
-      "name": "Abundance",
       "edition": "10th Edition",
-      "is_foil": false,
-      "mtgjson_id": "",
-      "scryfall_id": "",
-      "collector_number": ""
+        "name": "Abundance",
+        "collector_number": "249",
+        "cs_id": 2,
+        "is_foil": false,
+        "mtgjson_id": "1669af17-d287-5094-b005-4b143441442f",
+        "url": "/cards/2",
+        "mtgjson_code": "10E",
+        "scryfall_id": "46184f97-d5c9-4a98-9fd9-e19057ce9b7e"
     },
     {
-      "cs_id": 46479,
-      "url": "",
-      "name": "Abundance",
-      "edition": "Urza's Saga",
-      "is_foil": false,
-      "mtgjson_id": "",
-      "scryfall_id": "",
-      "collector_number": ""
+        "edition": "Commander 2017",
+        "name": "Abundance",
+        "collector_number": "145",
+        "cs_id": 50776,
+        "is_foil": false,
+        "mtgjson_id": "7e89befa-00f2-5326-a98d-70c5a54f0bea",
+        "url": "/cards/50776",
+        "mtgjson_code": "10E",
+        "scryfall_id": "7f3fff7e-f34d-4a99-a805-bd66c4e9f0cb"
     },
     ...
     ]
@@ -126,14 +130,15 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
   Returns the Cardsphere card details specified by the MTGJSON Id.
   ```
   {
-    "cs_id": 1,
-    "url": "",
     "name": "Abundance",
-    "edition": "10th Edition",
+    "mtgjson_id": "1669af17-d287-5094-b005-4b143441442f",
+    "url": "/cards/1",
+    "collector_number": "249",
+    "cs_id": 1,
+    "mtgjson_code": "10E",
     "is_foil": true,
-    "mtgjson_id": "",
-    "scryfall_id": "",
-    "collector_number": ""
+    "scryfall_id": "46184f97-d5c9-4a98-9fd9-e19057ce9b7e",
+    "edition": "10th Edition"
   }
   ```
 </details>
@@ -144,14 +149,16 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
   Returns the Cardsphere card details specified by the Scryfall Id.
   ```
   {
-    "cs_id": 1,
-    "url": "",
     "name": "Abundance",
-    "edition": "10th Edition",
+    "mtgjson_id": "1669af17-d287-5094-b005-4b143441442f",
+    "url": "/cards/1",
+    "collector_number": "249",
+    "cs_id": 1,
+    "mtgjson_code": null,
     "is_foil": true,
-    "mtgjson_id": "",
-    "scryfall_id": "",
-    "collector_number": ""
+    "scryfall_id": "46184f97-d5c9-4a98-9fd9-e19057ce9b7e",
+    "mtgjson_code": "10E",
+    "edition": "10th Edition"
   }
   ```
 </details>
@@ -161,15 +168,30 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
   
   Returns the Cardsphere card details of the card whose name best matches the search string provided.
   ```
-  {
-    "cs_id": 1,
-    "url": "",
-    "name": "Abundance",
-    "edition": "10th Edition",
-    "is_foil": true,
-    "mtgjson_id": "",
-    "scryfall_id": "",
-    "collector_number": ""
-  }
+ [
+    {
+        "name": "Abundance",
+        "mtgjson_id": "7e89befa-00f2-5326-a98d-70c5a54f0bea",
+        "url": "/cards/50776",
+        "collector_number": "145",
+        "cs_id": 50776,
+        "mtgjson_code": "C17",
+        "is_foil": false,
+        "scryfall_id": "7f3fff7e-f34d-4a99-a805-bd66c4e9f0cb",
+        "edition": "Commander 2017"
+    },
+    {
+        "name": "Abundance",
+        "mtgjson_id": "d122a279-8bd3-5eb2-8ab9-38974c8fa7f0",
+        "url": "/cards/15267",
+        "collector_number": "2",
+        "cs_id": 15267,
+        "mtgjson_code": "DDR",
+        "is_foil": false,
+        "scryfall_id": "9ab8ad39-840e-474b-beb8-96a7c2a8d0fa",
+        "edition": "Duel Decks: Nissa vs. Ob Nixilis"
+    },
+    ...
+  ]
   ```
 </details>
