@@ -13,6 +13,7 @@ class Cards(db.Model):
     mtgjson_id = db.Column(db.String(100), unique = True)
     scryfall_id = db.Column(db.String(100), unique = True)
     collector_number = db.Column(db.String(10))
+    mtgjson_code = db.Column(db.String(10))
 
 class Sets(db.Model):
     __tablename__ = 'sets'

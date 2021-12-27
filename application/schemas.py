@@ -21,6 +21,7 @@ class CardsSchema(Schema):
     mtgjson_id = fields.Str()
     scryfall_id = fields.Str()
     collector_number = fields.Str()
+    mtgjson_code = fields.Str()
 
 card_schema = CardsSchema()
 cards_schema = CardsSchema(many=True)
