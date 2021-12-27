@@ -44,7 +44,8 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
       "is_foil": true,
       "mtgjson_id": "1669af17-d287-5094-b005-4b143441442f",
       "scryfall_id": "46184f97-d5c9-4a98-9fd9-e19057ce9b7e",
-      "collector_number": "249"
+      "collector_number": "249",
+      "mtgjson_code": "10E"
     },
     ...
     ]
@@ -69,6 +70,7 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
           "is_foil": true,
           "mtgjson_id": "1669af17-d287-5094-b005-4b143441442f",
           "url": "/cards/1",
+          "mtgjson_code": "10E",
           "scryfall_id": "46184f97-d5c9-4a98-9fd9-e19057ce9b7e"
     },
     ...
@@ -102,6 +104,7 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
         "is_foil": false,
         "mtgjson_id": "1669af17-d287-5094-b005-4b143441442f",
         "url": "/cards/2",
+        "mtgjson_code": "10E",
         "scryfall_id": "46184f97-d5c9-4a98-9fd9-e19057ce9b7e"
     },
     {
@@ -112,6 +115,7 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
         "is_foil": false,
         "mtgjson_id": "7e89befa-00f2-5326-a98d-70c5a54f0bea",
         "url": "/cards/50776",
+        "mtgjson_code": "10E",
         "scryfall_id": "7f3fff7e-f34d-4a99-a805-bd66c4e9f0cb"
     },
     ...
@@ -131,7 +135,7 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
     "url": "/cards/1",
     "collector_number": "249",
     "cs_id": 1,
-    "mtgjson_code": null,
+    "mtgjson_code": "10E",
     "is_foil": true,
     "scryfall_id": "46184f97-d5c9-4a98-9fd9-e19057ce9b7e",
     "edition": "10th Edition"
@@ -153,6 +157,7 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
     "mtgjson_code": null,
     "is_foil": true,
     "scryfall_id": "46184f97-d5c9-4a98-9fd9-e19057ce9b7e",
+    "mtgjson_code": "10E",
     "edition": "10th Edition"
   }
   ```
@@ -181,7 +186,7 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
         "url": "/cards/15267",
         "collector_number": "2",
         "cs_id": 15267,
-        "mtgjson_code": null,
+        "mtgjson_code": "DDR",
         "is_foil": false,
         "scryfall_id": "9ab8ad39-840e-474b-beb8-96a7c2a8d0fa",
         "edition": "Duel Decks: Nissa vs. Ob Nixilis"
