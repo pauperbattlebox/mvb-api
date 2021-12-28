@@ -25,11 +25,9 @@ def get_all_sets():
 def get_set_by_set_name(cs_id):
 
     q = Sets.query.filter(Sets.cs_id == cs_id).first_or_404()
-    
     result = set_with_cards_schema.dump(q)
 
     p = Cards.query.filter(Cards.edition == result['cs_name']).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
-
     result['cards'] = cards_schema.dump(p)
 
     return jsonify(result)

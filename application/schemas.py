@@ -15,7 +15,6 @@ class CardsSchema(Schema):
     cs_id = fields.Int()
     url = fields.Str()
     name = fields.Str()
-    #variant = fields.Str()
     edition = fields.Str()
     is_foil = fields.Boolean()
     mtgjson_id = fields.Str()
