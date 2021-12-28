@@ -33,21 +33,26 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
   
   ```
   {
-    "cs_id": 755,
-    "cs_name": "10th Edition",
-    "mtgjson_code": "10E",
-    "related_mtgjson_codes": [],
-    "cards": [{
-      "cs_id": 1,
-      "url": "/cards/1",
-      "name": "Abundance",
-      "edition": "10th Edition",
-      "is_foil": true,
-      "mtgjson_id": "1669af17-d287-5094-b005-4b143441442f",
-      "scryfall_id": "46184f97-d5c9-4a98-9fd9-e19057ce9b7e",
-      "collector_number": "249",
-      "mtgjson_code": "10E"
-    },
+    "cs_id": 1290,
+    "cs_name": "Zendikar Rising - Extended Art",
+    "mtgjson_code": "ZNR",
+    "related_mtgjson_codes": [
+        {
+            "mtgjson_code": "ZNC"
+        }
+    ],
+    "cards": [
+        {
+            "is_foil": false,
+            "scryfall_id": "499c2b20-e83e-40ff-919e-1d134ad50c0a",
+            "edition": "Zendikar Rising - Extended Art",
+            "name": "Agadeem's Awakening // Agadeem, the Undercrypt",
+            "mtgjson_code": "ZNR",
+            "url": "/cards/71318",
+            "mtgjson_id": "3e7731e8-ca30-50af-a6cb-a7ef60b3c137",
+            "collector_number": "336",
+            "cs_id": 71318
+        },
     ...
     ]
   }
