@@ -15,8 +15,8 @@ cards = Blueprint('cards', __name__)
 def search_by_card_name(card_name):
 
     search = f"%{card_name}%"
-    
-    q = Cards.query.filter(Cards.name.like(search)).all()
+
+    q = Cards.query.filter(Cards.name.ilike(search)).all()
 
     result = cards_schema.dump(q)
 
