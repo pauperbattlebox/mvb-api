@@ -36,6 +36,7 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
     "cs_id": 755,
     "cs_name": "10th Edition",
     "mtgjson_code": "10E",
+    "related_mtgjson_codes": [],
     "cards": [{
       "cs_id": 1,
       "url": "/cards/1",
