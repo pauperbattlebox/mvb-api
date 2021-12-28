@@ -6,6 +6,7 @@ class SetsSchema(Schema):
     cs_id = fields.Int()
     cs_name = fields.Str()
     mtgjson_code = fields.Str()
+    related_mtgjson_codes = fields.List(fields.Str())
 
 set_schema = SetsSchema()
 sets_schema = SetsSchema(many=True)
