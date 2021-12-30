@@ -42,9 +42,19 @@ def get_by_cs_id(cs_id):
 
     return jsonify(result)
 
+####GET CARD BY MTGJSON CODE
+@cards.route(current_version + '/cards/mtgjson/<mtgjson_code>')
+def get_by_mtgjson_code(mtgjson_code):
+
+    q = Cards.query.filter(Cards.mtgjson_code == mtgjson_code).all()
+
+    result = cards_schema.dump(q)
+
+    return jsonify(result)
+
 
 ####GET CARD BY MTGJSON ID
-@cards.route(current_version + '/cards/mtgjson/<mtgjson_id>')
+@cards.route(current_version + '/cards/mtgjsonid/<mtgjson_id>')
 def get_by_mtgjson_id(mtgjson_id):
 
     q = Cards.query.filter(Cards.mtgjson_id == mtgjson_id).first_or_404()
@@ -56,7 +66,7 @@ def get_by_mtgjson_id(mtgjson_id):
 
 
 ####GET CARD BY SCRYFALL ID
-@cards.route(current_version + '/cards/scryfall/<scryfall_id>')
+@cards.route(current_version + '/cards/scryfallid/<scryfall_id>')
 def get_by_scryfall_id(scryfall_id):
 
     q = Cards.query.filter(Cards.scryfall_id == scryfall_id).first_or_404()
