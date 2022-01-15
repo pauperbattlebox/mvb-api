@@ -1,4 +1,5 @@
 from .extensions import db
+import datetime
 
 class Cards(db.Model):
     __tablename__ = 'cards'
@@ -10,10 +11,12 @@ class Cards(db.Model):
     variant = db.Column(db.String(500))
     edition = db.Column(db.String(500))
     is_foil = db.Column(db.Boolean)
-    mtgjson_id = db.Column(db.String(100), unique = True)
-    scryfall_id = db.Column(db.String(100), unique = True)
+    mtgjson_id = db.Column(db.String(100))
+    scryfall_id = db.Column(db.String(100))
     collector_number = db.Column(db.String(10))
+    matched_by_image = db.Column(db.Boolean)
     mtgjson_code = db.Column(db.String(10))
+    prices = db.relationship('Prices', backref='cards', uselist=False)
 
 class Sets(db.Model):
     __tablename__ = 'sets'
@@ -23,3 +26,10 @@ class Sets(db.Model):
     cs_name = db.Column(db.String(100))
     mtgjson_code = db.Column(db.String(100))
     map = db.Column(db.String(50))
+
+class Prices(db.Model):
+    __tablename__ = 'prices'
+    id = db.Column(db.Integer, primary_key = True)
+    price = db.Column(db.Float)
+    updated = db.Column(db.DateTime, default=datetime.datetime.utcnow())
+    card_id = db.Column(db.Integer, db.ForeignKey('cards.id'), nullable=False)
