@@ -11,6 +11,13 @@ class SetsSchema(Schema):
 set_schema = SetsSchema()
 sets_schema = SetsSchema(many=True)
 
+class PricesSchema(Schema):
+    price = fields.Float()
+    updated = fields.Date()
+
+    class Meta:
+        ordered = True
+
 class CardsSchema(Schema):
 
     cs_id = fields.Int()
@@ -22,6 +29,13 @@ class CardsSchema(Schema):
     scryfall_id = fields.Str()
     collector_number = fields.Str()
     mtgjson_code = fields.Str()
+    prices = fields.Nested(PricesSchema())
+
+    class Meta:
+        ordered = True
+
+price_schema = PricesSchema()
+prices_schema = PricesSchema(many=True)
 
 card_schema = CardsSchema()
 cards_schema = CardsSchema(many=True)

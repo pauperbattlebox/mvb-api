@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask import current_app as app
 
-from application.models import Cards
+from application.models import Cards, Prices
 from application.schemas import card_schema, cards_schema, card_with_related_printings_schema
 
 from application import current_version

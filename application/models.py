@@ -33,3 +33,4 @@ class Prices(db.Model):
     price = db.Column(db.Float)
     updated = db.Column(db.DateTime, default=datetime.datetime.utcnow())
     card_id = db.Column(db.Integer, db.ForeignKey('cards.id'), nullable=False)
+    
