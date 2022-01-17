@@ -4,7 +4,7 @@ from flask import current_app as app
 from application.models import Cards, Prices
 from application.schemas import card_schema, cards_schema, card_with_related_printings_schema
 
-from application import current_version
+from application import current_version, cache
 
 cards = Blueprint('cards', __name__)
 
@@ -42,7 +42,7 @@ def get_by_cs_id(cs_id):
 
     return jsonify(result)
 
-####GET CARD BY MTGJSON CODE
+####GET CARDS BY MTGJSON CODE
 @cards.route(current_version + '/cards/mtgjson/<mtgjson_code>')
 def get_by_mtgjson_code(mtgjson_code):
 
@@ -55,6 +55,7 @@ def get_by_mtgjson_code(mtgjson_code):
 
 ####GET CARD BY MTGJSON ID
 @cards.route(current_version + '/cards/mtgjsonid/<mtgjson_id>')
+@cache.cached(timeout=0)
 def get_by_mtgjson_id(mtgjson_id):
 
     q = Cards.query.filter(Cards.mtgjson_id == mtgjson_id).first_or_404()
@@ -67,6 +68,7 @@ def get_by_mtgjson_id(mtgjson_id):
 
 ####GET CARD BY SCRYFALL ID
 @cards.route(current_version + '/cards/scryfallid/<scryfall_id>')
+@cache.cached(timeout=0)
 def get_by_scryfall_id(scryfall_id):
 
     q = Cards.query.filter(Cards.scryfall_id == scryfall_id).first_or_404()
