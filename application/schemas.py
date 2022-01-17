@@ -13,7 +13,7 @@ sets_schema = SetsSchema(many=True)
 
 class PricesSchema(Schema):
     price = fields.Float()
-    updated = fields.Date()
+    updated = fields.DateTime("%Y-%m-%d %H:%M")
 
     class Meta:
         ordered = True

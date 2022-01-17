@@ -31,6 +31,5 @@ class Prices(db.Model):
     __tablename__ = 'prices'
     id = db.Column(db.Integer, primary_key = True)
     price = db.Column(db.Float)
-    updated = db.Column(db.DateTime, default=datetime.datetime.utcnow())
+    updated = db.Column(db.DateTime)
     card_id = db.Column(db.Integer, db.ForeignKey('cards.id'), nullable=False)
-    
