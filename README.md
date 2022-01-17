@@ -247,6 +247,21 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
   ```
 [
     {
+        "cs_id": 75322,
+        "url": "/cards/75322",
+        "name": "Leyline of the Void",
+        "edition": "Time Spiral Remastered",
+        "is_foil": false,
+        "mtgjson_id": "677a6e71-3038-5419-8503-dd2a58231cf4",
+        "scryfall_id": "186eea73-46c5-4532-ac94-326db7d6f0cb",
+        "collector_number": "326",
+        "mtgjson_code": "TSR",
+        "prices": {
+            "price": 7.99,
+            "updated": "2022-01-17 02:05"
+        }
+    },
+    {
         "cs_id": 61482,
         "url": "/cards/61482",
         "name": "Leyline of Abundance",
@@ -258,21 +273,6 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
         "mtgjson_code": "PM20",
         "prices": {
             "price": 2.88,
-            "updated": "2022-01-17 02:05"
-        }
-    },
-    {
-        "cs_id": 50776,
-        "url": "/cards/50776",
-        "name": "Abundance",
-        "edition": "Commander 2017",
-        "is_foil": false,
-        "mtgjson_id": "7e89befa-00f2-5326-a98d-70c5a54f0bea",
-        "scryfall_id": "7f3fff7e-f34d-4a99-a805-bd66c4e9f0cb",
-        "collector_number": "145",
-        "mtgjson_code": "C17",
-        "prices": {
-            "price": 3.07,
             "updated": "2022-01-17 02:05"
         }
     },
