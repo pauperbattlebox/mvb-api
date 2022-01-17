@@ -23,6 +23,17 @@ def search_by_card_name(card_name):
     return jsonify(result)
 
 
+@cards.route(current_version + 'cards/all')
+@cache.cached(timeout=10)
+def get_all_ids():
+
+    q = Cards.query.with_entities(Cards.cs_id, Cards.mtgjson_id, Cards.scryfall_id).all()
+
+    result = cards_schema.dump(q)
+
+    return jsonify(result)
+
+
 ################# GET SINGLE CARD ############################
 ####GET CARD BY CS ID
 @cards.route(current_version + '/cards/<cs_id>')
