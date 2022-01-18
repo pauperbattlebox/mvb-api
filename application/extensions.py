@@ -11,4 +11,4 @@ load_dotenv(path.join(basedir, '.env'))
 db = SQLAlchemy()
 migrate = Migrate()
 cache = Cache(config = {'CACHE_TYPE': 'RedisCache',
-                        'CACHE_REDIS_URL': environ.get('REDIS_URL')})
+                        'CACHE_REDIS_URL': environ.get('REDISTOGO_URL')})
