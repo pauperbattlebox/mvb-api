@@ -24,7 +24,7 @@ def search_by_card_name(card_name):
 
 
 @cards.route(current_version + 'cards/all')
-@cache.cached(timeout=30)
+#@cache.cached(timeout=86400)
 def get_all_ids():
 
     q = Cards.query.with_entities(Cards.cs_id, Cards.mtgjson_id, Cards.scryfall_id).all()
@@ -81,7 +81,7 @@ def get_by_mtgjson_id(mtgjson_id):
 
 ####GET CARD BY SCRYFALL ID
 @cards.route(current_version + '/cards/scryfallid/<scryfall_id>')
-#@cache.cached(timeout=86400)
+@cache.cached(timeout=10)
 def get_by_scryfall_id(scryfall_id):
 
     q = Cards.query.filter(Cards.scryfall_id == scryfall_id).first_or_404()
