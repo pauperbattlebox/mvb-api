@@ -1,6 +1,6 @@
 from flask import Flask
 
-from .extensions import db, migrate
+from .extensions import db, migrate, cache
 
 current_version = '/api/v1/'
 
@@ -9,9 +9,9 @@ def create_app():
 
     app.config.from_pyfile("config.py")
 
-
     db.init_app(app)
     migrate.init_app(app, db)
+    cache.init_app(app)
 
     from application import models
 
