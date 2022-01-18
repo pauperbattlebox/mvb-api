@@ -23,7 +23,7 @@ def get_all_sets():
 
 ###GET SET BY CS ID
 @sets.route(current_version + '/sets/<cs_id>')
-#@cache.cached(timeout=10)
+@cache.cached(timeout=10)
 def get_set_by_set_name(cs_id):
 
     q = Sets.query.filter(Sets.cs_id == cs_id).first_or_404()
@@ -42,7 +42,7 @@ def get_set_by_set_name(cs_id):
 ####GET SET BY MTGJSON CODE
 ####THIS MATCHES *.json file
 @sets.route(current_version + '/sets/mtgjson/<mtgjson_code>')
-#@cache.cached(timeout=86400)
+@cache.cached(timeout=10)
 def get_set_by_mtgjson_code(mtgjson_code):
 
     q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code).first_or_404()
