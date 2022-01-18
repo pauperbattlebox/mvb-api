@@ -4,14 +4,14 @@ from flask import current_app as app
 from application.models import Sets, Cards
 from application.schemas import sets_schema, set_with_cards_schema, cards_schema
 
-from application import current_version, cache
+from application import current_version#, cache
 
 sets = Blueprint('sets', __name__)
 
 
 ###GET ALL SETS
 @sets.route(current_version + '/sets')
-@cache.cached(timeout=10)
+#@cache.cached(timeout=10)
 def get_all_sets():
 
     q = Sets.query.all()
@@ -23,7 +23,7 @@ def get_all_sets():
 
 ###GET SET BY CS ID
 @sets.route(current_version + '/sets/<cs_id>')
-@cache.cached(timeout=10)
+#@cache.cached(timeout=10)
 def get_set_by_set_name(cs_id):
 
     q = Sets.query.filter(Sets.cs_id == cs_id).first_or_404()

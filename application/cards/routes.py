@@ -4,7 +4,7 @@ from flask import current_app as app
 from application.models import Cards, Prices
 from application.schemas import card_schema, cards_schema, card_with_related_printings_schema
 
-from application import current_version, cache
+from application import current_version#, cache
 
 cards = Blueprint('cards', __name__)
 
