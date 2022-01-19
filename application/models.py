@@ -37,4 +37,4 @@ class Prices(db.Model):
 class Meta(db.Model):
     __table__name = 'meta'
     id = db.Column(db.Integer, primary_key = True)
-    last_updated = db.Columnn(db.DateTime)
+    last_updated = db.Column(db.DateTime)
