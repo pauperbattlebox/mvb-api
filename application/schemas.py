@@ -1,5 +1,5 @@
 from marshmallow import Schema, fields
-from application.models import Sets, Cards
+from application.models import Sets, Cards, Meta
 
 class SetsSchema(Schema):
 
@@ -59,3 +59,10 @@ class CardsWithRelatedPrintingsSchema(CardsSchema):
 
 card_with_related_printings_schema = CardsWithRelatedPrintingsSchema()
 cards_with_related_printings_schema = CardsWithRelatedPrintingsSchema(many=True)
+
+class MetaSchema(Schema):
+
+    last_updated = fields.DateTime("%Y-%m-%d %H:%M")
+    cards = fields.List(fields.Nested(CardsSchema()))
+
+meta_schema = MetaSchema()
