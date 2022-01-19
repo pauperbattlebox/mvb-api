@@ -33,3 +33,8 @@ class Prices(db.Model):
     price = db.Column(db.Float)
     updated = db.Column(db.DateTime)
     card_id = db.Column(db.Integer, db.ForeignKey('cards.id'), nullable=False)
+
+class Meta(db.Model):
+    __table__name = 'meta'
+    id = db.Column(db.Integer, primary_key = True)
+    last_updated = db.Columnn(db.DateTime)
