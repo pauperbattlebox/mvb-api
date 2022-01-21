@@ -1,15 +1,41 @@
 from flask import Blueprint, jsonify, request
 from flask import current_app as app
 
-from application.models import Cards, Prices
-from application.schemas import card_schema, cards_schema, card_with_related_printings_schema
+from application.models import Cards, Prices, Meta
+from application.schemas import card_schema, cards_schema, card_with_related_printings_schema, meta_schema
 
 from application import current_version, cache
 
 cards = Blueprint('cards', __name__)
 
+####GET CACHE LAST UPDATED TIMESTAMP
+@cards.route(current_version + 'cache')
+def get_cache():
+
+    q = Meta.query.with_entities(Meta.last_updated).order_by(Meta.last_updated.desc()).first_or_404()
+
+    result = meta_schema.dump(q)
+
+    return jsonify(result)
+
 
 ################ GET MULTIPLE CARDS ###########################
+####GET ALL CARDS
+@cards.route(current_version + 'cards/all')
+@cache.cached(timeout=86400)
+def get_all_ids():
+
+    q = Meta.query.order_by(Meta.last_updated.desc()).first_or_404()
+
+    result = meta_schema.dump(q)
+
+    p = Cards.query.with_entities(Cards.cs_id, Cards.mtgjson_id, Cards.scryfall_id).all()
+
+    result['cards'] = cards_schema.dump(p)
+
+    return jsonify(result)
+
+
 ####SEARCH BY CARD NAME
 @cards.route(current_version + 'cards/search/<card_name>')
 def search_by_card_name(card_name):
@@ -17,17 +43,6 @@ def search_by_card_name(card_name):
     search = f"%{card_name}%"
 
     q = Cards.query.filter(Cards.name.ilike(search)).all()
-
-    result = cards_schema.dump(q)
-
-    return jsonify(result)
-
-
-@cards.route(current_version + 'cards/all')
-@cache.cached(timeout=86400)
-def get_all_ids():
-
-    q = Cards.query.with_entities(Cards.cs_id, Cards.mtgjson_id, Cards.scryfall_id).all()
 
     result = cards_schema.dump(q)
 
@@ -54,6 +69,7 @@ def get_by_cs_id(cs_id):
 
     return jsonify(result)
 
+
 ####GET CARDS BY MTGJSON CODE
 @cards.route(current_version + '/cards/mtgjson/<mtgjson_code>')
 @cache.cached(timeout=86400)
@@ -76,7 +92,6 @@ def get_by_mtgjson_id(mtgjson_id):
     result = card_schema.dump(q)
 
     return jsonify(result)
-
 
 
 ####GET CARD BY SCRYFALL ID
