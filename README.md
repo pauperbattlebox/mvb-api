@@ -95,6 +95,38 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
 </details>
 
 <details>
+  <summary>GET /cache</summary>
+  
+  Returns information about the current state of the cache. Card and pricing data is cached and refreshed once per day. 
+  
+  ```
+{
+    "last_updated": "2022-01-22 12:34"
+}
+  ```
+</details>
+
+<details>
+  <summary>GET /cards/all</summary>
+  
+  Returns the IDs for all cards in the database as well as the current state of the cache.
+  
+  ```
+{
+    "last_updated": "2022-01-22 12:34",
+    "cards": [
+      {
+        "cs_id": 1,
+        "mtgjson_id": 1,
+        "scryfall_id": 1
+      },
+      ...
+    ]
+}
+  ```
+</details>
+
+<details>
   <summary>GET /cards/{cs_id}</summary>
 
   Returns the Cardsphere card details specified by the cs_id.
