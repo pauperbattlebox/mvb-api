@@ -1,6 +1,6 @@
 from flask import Flask
 
-from .extensions import db, migrate, cache
+from .extensions import db, migrate, cache, limiter
 
 current_version = '/api/v1/'
 
@@ -12,6 +12,7 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
     cache.init_app(app)
+    limiter.init_app(app)
 
     from application import models
 
