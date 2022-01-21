@@ -4,12 +4,13 @@ from flask import current_app as app
 from application.models import Cards, Prices, Meta
 from application.schemas import card_schema, cards_schema, card_with_related_printings_schema, meta_schema
 
-from application import current_version, cache
+from application import current_version, cache, limiter
 
 cards = Blueprint('cards', __name__)
 
 ####GET CACHE LAST UPDATED TIMESTAMP
 @cards.route(current_version + 'cache')
+@limiter.limit("100/minute")
 def get_cache():
 
     q = Meta.query.with_entities(Meta.last_updated).order_by(Meta.last_updated.desc()).first_or_404()
@@ -22,6 +23,7 @@ def get_cache():
 ################ GET MULTIPLE CARDS ###########################
 ####GET ALL CARDS
 @cards.route(current_version + 'cards/all')
+@limiter.limit("5/hour")
 @cache.cached(timeout=86400)
 def get_all_ids():
 
@@ -38,6 +40,7 @@ def get_all_ids():
 
 ####SEARCH BY CARD NAME
 @cards.route(current_version + 'cards/search/<card_name>')
+@limiter.limit("25/minute")
 def search_by_card_name(card_name):
 
     search = f"%{card_name}%"
@@ -52,6 +55,7 @@ def search_by_card_name(card_name):
 ################# GET SINGLE CARD ############################
 ####GET CARD BY CS ID
 @cards.route(current_version + '/cards/<cs_id>')
+@limiter.limit("50/minute")
 @cache.cached(timeout=86400)
 def get_by_cs_id(cs_id):
     args = request.args
@@ -72,6 +76,7 @@ def get_by_cs_id(cs_id):
 
 ####GET CARDS BY MTGJSON CODE
 @cards.route(current_version + '/cards/mtgjson/<mtgjson_code>')
+@limiter.limit("50/minute")
 @cache.cached(timeout=86400)
 def get_by_mtgjson_code(mtgjson_code):
 
@@ -84,6 +89,7 @@ def get_by_mtgjson_code(mtgjson_code):
 
 ####GET CARD BY MTGJSON ID
 @cards.route(current_version + '/cards/mtgjsonid/<mtgjson_id>')
+@limiter.limit("100/minute")
 @cache.cached(timeout=86400)
 def get_by_mtgjson_id(mtgjson_id):
 
@@ -96,6 +102,7 @@ def get_by_mtgjson_id(mtgjson_id):
 
 ####GET CARD BY SCRYFALL ID
 @cards.route(current_version + '/cards/scryfallid/<scryfall_id>')
+@limiter.limit("100/minute")
 @cache.cached(timeout=86400)
 def get_by_scryfall_id(scryfall_id):
 

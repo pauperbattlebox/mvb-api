@@ -4,13 +4,14 @@ from flask import current_app as app
 from application.models import Sets, Cards
 from application.schemas import sets_schema, set_with_cards_schema, cards_schema
 
-from application import current_version, cache
+from application import current_version, cache, limiter
 
 sets = Blueprint('sets', __name__)
 
 
 ###GET ALL SETS
 @sets.route(current_version + '/sets')
+@limiter.limit("10/hour")
 @cache.cached(timeout=86400)
 def get_all_sets():
 
@@ -23,6 +24,7 @@ def get_all_sets():
 
 ###GET SET BY CS ID
 @sets.route(current_version + '/sets/<cs_id>')
+@limiter.limit("50/minute")
 @cache.cached(timeout=86400)
 def get_set_by_set_name(cs_id):
 
@@ -42,6 +44,7 @@ def get_set_by_set_name(cs_id):
 ####GET SET BY MTGJSON CODE
 ####THIS MATCHES *.json file
 @sets.route(current_version + '/sets/mtgjson/<mtgjson_code>')
+@limiter.limit("50/minute")
 @cache.cached(timeout=86400)
 def get_set_by_mtgjson_code(mtgjson_code):
 
