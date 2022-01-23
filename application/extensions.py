@@ -3,7 +3,6 @@ from flask_migrate import Migrate
 from flask_caching import Cache
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-
 from os import environ, path
 from dotenv import load_dotenv
 
