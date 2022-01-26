@@ -1,0 +1,28 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  --background-color: #444444;
+  --forground-color: #171717;
+  --font-color: #ededed;
+  --link-color: #da0037;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main {
+  background-color: var(--forground-color);
+  color: var(--font-color);
+  max-width: 1200px;
+  max-height: 800px;
+  width: 80%;
+  height: auto;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: var(--link-color);
+}

@@ -1,10 +1,38 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>MVB</title>
-  </head>
-  <body>
+{% extends "base.html" %}
 
-  </body>
-</html>
+{% block css_layout %}
+<link rel="stylesheet" href="{{url_for('static',filename='index-layout.css')}}">
+{% endblock %}
+
+{% block title %}
+<title>Multiverse Bridge</title>
+{% endblock %}
+
+{% block content %}
+<div class="main">
+  <div class="title">
+    Multiverse Bridge API
+  </div>
+  <div class="content">
+    <div class="description">
+      The Multiverse Bridge is a Cardsphere community-built project aimed to help translate Cardsphere card and set data to other platforms.&nbsp
+      The project leverages existing tools MTGJSON and Scryfall to provide the data to enable consumers to translate their Cardsphere collection data to another platform that supports MTGJSON or Scryfall identifiers.
+    </div>
+    <div class="api-list">
+      APIs
+      <ul>
+        <li><a>GET /sets</a></li>
+        <li>GET /sets/{cs_id}</li>
+        <li>GET /sets/mtgjson/{mtgjson_code}</li>
+        <li>GET /cache</li>
+        <li>GET /cards/all</li>
+        <li>GET /cards/{cs_id}</li>
+        <li>GET /cards/mtgjson/{mtgjson_code}</li>
+        <li>GET /cards/mtgjsonid/{mtgjson_id}</li>
+        <li>GET /cards/scryfallid/{scryfall_id}</li>
+        <li>GET /cards/search/{string}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
