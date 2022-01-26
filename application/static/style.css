@@ -1,22 +1,56 @@
 body {
   font-family: 'Montserrat', sans-serif;
-  --background-color: #444444;
-  --forground-color: #171717;
+  --background-color: #333333;
+  --foreground-color: #171717;
   --font-color: #ededed;
   --link-color: #da0037;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  background-color: var(--background-color);
+}
+
+.hero {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+}
+.hero-image{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("dream.jpg");
+  height: 150px;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.hero-text{
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: White;
+  text-shadow: 2px 2px black;
+  font-size: 40px;
+  font-weight: bolder;
 }
 
 .main {
-  background-color: var(--forground-color);
+  background-color: var(--foreground-color);
   color: var(--font-color);
   max-width: 1200px;
   max-height: 800px;
-  width: 80%;
+  width: 98%;
   height: auto;
+  border-radius: 5px;
 }
 
 ul {
@@ -26,3 +60,5 @@ ul {
 a {
   color: var(--link-color);
 }
+
+/* media query <800px go to mobile layout*/

@@ -12,7 +12,30 @@
   align-items: center;
 }
 
-.description {
-  max-width: 45%;
+i {
+  font-size: 24px;
+}
 
+.description {
+  /*max-width: 45%;*/
+  width: auto;
+  text-align: left;
+  font-size: 20px;
+  margin-left: 5px;
+}
+
+.links {
+  text-align: center;
+}
+
+.title {
+  text-align: center;
+  width: 98%;
+}
+.api-title {
+  text-align: center;
+}
+
+.api-list {
+  min-width: 40%;
 }
