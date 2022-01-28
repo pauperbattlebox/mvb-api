@@ -8,7 +8,7 @@ body {
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--background-color);
+  background-color: var(--background-color);  
 }
 
 .hero {
@@ -19,7 +19,7 @@ body {
   align-content: center;
 }
 .hero-image{
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("dream.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("dream.jpg");
   height: 150px;
   width: 100%;
   background-position: center;
@@ -39,7 +39,7 @@ body {
   transform: translate(-50%, -50%);
   color: White;
   text-shadow: 2px 2px black;
-  font-size: 40px;
+  font-size: 50px;
   font-weight: bolder;
 }
 
