@@ -1,6 +1,6 @@
 body {
-  font-family: 'Montserrat', sans-serif;
-  --background-color: #333333; /*#496b80*/
+  font-family: 'Ubuntu', sans-serif;
+  --background-color: #222222;
   --foreground-color: #171717;
   --font-color: #ededed;
   --link-color: #da0037;
@@ -8,7 +8,7 @@ body {
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--background-color);  
+  background-color: var(--background-color);
 }
 
 .hero {
@@ -20,7 +20,7 @@ body {
 }
 .hero-image{
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("dream.jpg");
-  height: 150px;
+  height: 250px;
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -47,7 +47,6 @@ body {
   background-color: var(--foreground-color);
   color: var(--font-color);
   max-width: 1200px;
-  max-height: 800px;
   width: 98%;
   height: auto;
   border-radius: 5px;

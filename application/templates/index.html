@@ -19,27 +19,53 @@
       </div>
     </div>
   </div>
-  <div class="content">
-    <div class="description">
-      The Multiverse Bridge is a Cardsphere community-built project aimed to help translate <a href="https://www.cardsphere.com" target="_blank">Cardsphere</a> card and set data to other platforms.<br>
-      The project leverages existing tools <a href="https://www.mtgjson.com" target="_blank">MTGJSON</a> and <a href="https://www.scryfall.com" target="_blank">Scryfall</a> to provide the data to enable consumers to translate their Cardsphere collection data to another platform that supports MTGJSON or Scryfall identifiers.<br>
-      <div class="links"><a href="https://www.github.com" target="_blank"><i class="lab la-github"></i></a> <i class="lab la-discord"></i></div>
+
+    <div class="content">
+      <div class="description">
+        <p>The Multiverse Bridge is a Cardsphere community-built project aimed to help translate <a href="https://www.cardsphere.com" target="_blank">Cardsphere</a> card and set data to other platforms.</p>
+        <p>The project leverages existing tools <a href="https://www.mtgjson.com" target="_blank">MTGJSON</a> and <a href="https://www.scryfall.com" target="_blank">Scryfall</a> to provide the data to enable consumers to translate their Cardsphere collection data to another platform that supports MTGJSON or Scryfall identifiers.</p>
+
+      </div>
+      <div class="api-title"><h2>Endpoints</h2></div>
+      <div class="api-list-content">
+          <div class="api-content">
+              <h3>Cache</h3>
+              <ul>
+                <li>GET /cache</li>
+              </ul>
+
+            <h3>Sets</h3>
+            <ul>
+              <li>GET /sets</li>
+              <li>GET /sets/{cs_id}</li>
+              <li>GET /sets/mtgjson/{mtgjson_code}</li>
+            </ul>
+          </div>
+
+          <div class="api-content">
+            <h3>Cards</h3>
+            <ul>
+              <li>GET /cards/all</li>
+              <li>GET /cards/{cs_id}</li>
+              <li>GET /cards/mtgjson/{mtgjson_code}</li>
+              <li>GET /cards/mtgjsonid/{mtgjson_id}</li>
+              <li>GET /cards/scryfallid/{scryfall_id}</li>
+              <li>GET /cards/search/{string}</li>
+            </ul>
+          </div>
+        </div>
     </div>
-    <div class="api-list">
-      <div class="api-title"><h2>APIs</h2></div>
+
+    <div class="list">
+      <div class="list-title"><h2>More Info</h2></div>
       <ul>
-        <li><a>GET /sets</a></li>
-        <li>GET /sets/{cs_id}</li>
-        <li>GET /sets/mtgjson/{mtgjson_code}</li>
-        <li>GET /cache</li>
-        <li>GET /cards/all</li>
-        <li>GET /cards/{cs_id}</li>
-        <li>GET /cards/mtgjson/{mtgjson_code}</li>
-        <li>GET /cards/mtgjsonid/{mtgjson_id}</li>
-        <li>GET /cards/scryfallid/{scryfall_id}</li>
-        <li>GET /cards/search/{string}</li>
+      <li>More info at Github repo: <a href="https://www.github.com" target="_blank"><i class="lab la-github"></i></a></li>
+      <li>Chat with us in discord: <i class="lab la-discord"></i></li>
+      <li>Support server costs: <i class="las la-coffee"></i></li>
       </ul>
     </div>
-  </div>
+    {% block footer %}
+
+    {% endblock %}
 </div>
 {% endblock %}
