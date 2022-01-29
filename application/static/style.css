@@ -61,7 +61,7 @@ a {
 @media only screen and (max-width: 800px){
   .hero-image {
     height: 100px;
-    background-image: url("dream400.jpg");
+    background-image: url("dream350.jpg");
     max-width: 100%;
   }
   .hero-text {
