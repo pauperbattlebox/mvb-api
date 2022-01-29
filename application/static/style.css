@@ -46,7 +46,6 @@ body {
   background-color: var(--foreground-color);
   color: var(--font-color);
   max-width: 1200px;
-  width: 98%;
   height: auto;
   border-radius: 5px;
 }
@@ -59,4 +58,14 @@ a {
   color: var(--link-color);
 }
 
-/* media query <800px go to mobile layout*/
+@media only screen and (max-width: 800px){
+  .hero-image {
+    height: 100px;
+    background-image: url("dream400.jpg");
+    max-width: 100%;
+  }
+  .hero-text {
+    font-size: 30px;
+  }
+
+}

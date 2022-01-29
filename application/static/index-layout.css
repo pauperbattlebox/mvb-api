@@ -21,14 +21,15 @@
   grid-template-areas:
   "title title"
   "content list"
-  "footer footer";
+  "footer .";
 }
 
 .content {
   display: flex;
   flex-flow: column;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
+  margin: 5px;
 }
 
 i {
@@ -93,4 +94,31 @@ i {
   background-color: #444444;
   border-radius: 3px;
   padding: 3px;
+}
+
+.footer {
+  width: 100%;
+  margin: 5px;
+  font-size: 10px;
+  color: grey;
+}
+
+@media only screen and (max-width: 800px){
+  .main {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "title"
+    "content"
+    "list"
+    "footer";
+  }
+  .description {
+    font-size: 16px;
+  }
+  .api-content {
+    font-size: 14px;
+  }
+
 }
