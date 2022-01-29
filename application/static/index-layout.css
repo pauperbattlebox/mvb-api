@@ -73,6 +73,14 @@ i {
   margin: 5px;
 }
 
+.list-content {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: #444444;
+  border-radius: 3px;
+  margin: 5px;
+}
+
 .api-list-content {
   display: flex;
   flex-flow: row nowrap;
