@@ -37,7 +37,6 @@ i {
 }
 
 .description {
-  /*max-width: 45%;*/
   width: auto;
   text-align: left;
   font-size: 20px;
@@ -59,10 +58,6 @@ i {
   background-color: #444444;
   border-radius: 3px;
   margin: 5px;
-}
-
-.api-list {
-  min-width: 40%;
 }
 
 .list {
