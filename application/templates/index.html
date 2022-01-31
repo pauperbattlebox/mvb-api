@@ -36,7 +36,7 @@
                     <a>
                       <i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
                       </a>
-                      <u>GET /cache</u>
+                      /cache
                     </li>
                     <div class="list-info" x-show="open">
                       <li>Returns information about the current state of the cache. Card and pricing data is cached and refreshed once per day.</li>
@@ -46,31 +46,112 @@
 
             <h3>Sets</h3>
             <ul>
-              <div class="list-item" x-data="{ open: false }" @click="open = ! open">
-              <li>
-                <a>
-                  <i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
+                <div class="list-item" x-data="{ open: false }" @click="open = ! open">
+                    <li>
+                      <a>
+                        <i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
+                      </a>
+                      /sets
+                    </li>
+                    <div class="list-info" x-show="open">
+                      <li>Returns a list of all Cardsphere sets including that set's MTGJSON equivalent code value.</li>
+                    </div>
+                  </div>
+
+                  <div class="list-item" x-data="{ open: false }" @click="open = ! open">
+                    <li>
+                    <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
                     </a>
-                    <u>GET /sets</u>
+                    /sets/{cs_id}
                   </li>
                   <div class="list-info" x-show="open">
-                    <li>Returns a list of all Cardsphere sets including that set's MTGJSON equivalent code value.</li>
+                    <li>Returns the Cardsphere set specified by the cs_id and a list of the cards in the set.</li>
                   </div>
                   </div>
-              <li>GET /sets/{cs_id}</li>
-              <li>GET /sets/mtgjson/{mtgjson_code}</li>
+
+                  <div class="list-item" x-data="{ open: false }" @click="open = ! open">
+                    <li>
+                      <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
+                      </a>
+                      /sets/mtgjson/{mtgjson_code}
+                    </li>
+                    <div class="list-info" x-show="open">
+                      <li>Returns the Cardsphere set specified by the MTGJSON set code and a list of the cards in the set.</li>
+                    </div>
+                  </div>
             </ul>
           </div>
 
           <div class="api-content">
             <h3>Cards</h3>
             <ul>
-              <li>GET /cards/all</li>
-              <li>GET /cards/{cs_id}</li>
-              <li>GET /cards/mtgjson/{mtgjson_code}</li>
-              <li>GET /cards/mtgjsonid/{mtgjson_id}</li>
-              <li>GET /cards/scryfallid/{scryfall_id}</li>
-              <li>GET /cards/search/{string}</li>
+
+              <div class="list-item" x-data="{ open: false }" @click="open = ! open">
+                <li>
+                <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
+                </a>
+                /cards/all
+              </li>
+              <div class="list-info" x-show="open">
+                <li>Returns the IDs for all cards in the database as well as the current state of the cache.</li>
+              </div>
+              </div>
+
+              <div class="list-item" x-data="{ open: false }" @click="open = ! open">
+                <li>
+                <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
+                </a>
+                /cards/{cs_id}
+              </li>
+              <div class="list-info" x-show="open">
+                <li>Returns the Cardsphere card details specified by the cs_id.</li>
+              </div>
+              </div>
+
+              <div class="list-item" x-data="{ open: false }" @click="open = ! open">
+                <li>
+                <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
+                </a>
+                /cards/mtgjson/{mtgjson_code}
+              </li>
+              <div class="list-info" x-show="open">
+                <li>Returns the Cardsphere card details specified by the MTGJSON Set Code.</li>
+              </div>
+              </div>
+
+              <div class="list-item" x-data="{ open: false }" @click="open = ! open">
+                <li>
+                <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
+                </a>
+                /cards/mtgjsonid/{mtgjson_id}
+              </li>
+              <div class="list-info" x-show="open">
+                <li>Returns the Cardsphere card details specified by the MTGJSON ID.</li>
+              </div>
+              </div>
+
+              <div class="list-item" x-data="{ open: false }" @click="open = ! open">
+                <li>
+                <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
+                </a>
+                /cards/scryfallid/{scryfall_id}
+              </li>
+              <div class="list-info" x-show="open">
+                <li>Returns the Cardsphere card details specified by the Scryfall ID.</li>
+              </div>
+              </div>
+
+              <div class="list-item" x-data="{ open: false }" @click="open = ! open">
+                <li>
+                <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
+                </a>
+                /cards/search/{string}
+              </li>
+              <div class="list-info" x-show="open">
+                <li>Returns the Cardsphere card details of the card whose name best matches the search string provided.</li>
+              </div>
+              </div>
+
             </ul>
           </div>
         </div>
@@ -87,8 +168,6 @@
         </ul>
         <ul>
           <li>Is this free? YES!</li>
-          <li><br></li>
-          <li>Who built it? Yer Mum</li>
           <li><br></li>
           <li>Why can't I find a certain card? This API uses Cardsphere as its dataset, so only cards which are indexed by Cardsphere are available.</li>
           <li><br></li>
