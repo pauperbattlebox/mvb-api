@@ -33,7 +33,7 @@
 }
 
 i {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .description {
@@ -79,6 +79,13 @@ i {
   background-color: var(--card-background-color);
   border-radius: 3px;
   margin: 5px;
+}
+
+.list-info {
+  border-bottom: solid 1px;
+  border-color: var(--font-color);
+  margin-top: 3px;
+  padding: 5px;
 }
 
 .api-list-content {

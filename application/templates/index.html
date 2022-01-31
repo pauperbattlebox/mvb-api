@@ -31,12 +31,32 @@
           <div class="api-content">
               <h3>Cache</h3>
               <ul>
-                <li>GET /cache</li>
+                <div class="list-item" x-data="{ open: false }" @click="open = ! open">
+                  <li>
+                    <a>
+                      <i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
+                      </a>
+                      <u>GET /cache</u>
+                    </li>
+                    <div class="list-info" x-show="open">
+                      <li>Returns information about the current state of the cache. Card and pricing data is cached and refreshed once per day.</li>
+                    </div>
+                </div>
               </ul>
 
             <h3>Sets</h3>
             <ul>
-              <li>GET /sets</li>
+              <div class="list-item" x-data="{ open: false }" @click="open = ! open">
+              <li>
+                <a>
+                  <i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
+                    </a>
+                    <u>GET /sets</u>
+                  </li>
+                  <div class="list-info" x-show="open">
+                    <li>Returns a list of all Cardsphere sets including that set's MTGJSON equivalent code value.</li>
+                  </div>
+                  </div>
               <li>GET /sets/{cs_id}</li>
               <li>GET /sets/mtgjson/{mtgjson_code}</li>
             </ul>
