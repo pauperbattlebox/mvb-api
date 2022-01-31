@@ -55,7 +55,7 @@ i {
 .api-title {
   text-align: center;
   width: 100%;
-  background-color: #444444;
+  background-color: var(--card-background-color);
   border-radius: 3px;
   margin: 5px;
 }
@@ -68,7 +68,7 @@ i {
 .list-title {
   text-align: center;
   width: auto;
-  background-color: #444444;
+  background-color: var(--card-background-color);
   border-radius: 3px;
   margin: 5px;
 }
@@ -76,7 +76,7 @@ i {
 .list-content {
   display: flex;
   flex-flow: column nowrap;
-  background-color: #444444;
+  background-color: var(--card-background-color);
   border-radius: 3px;
   margin: 5px;
 }
@@ -94,7 +94,7 @@ i {
   margin: 2.5px;
   font-family: 'Source Code Pro', monospace;
   width: 50%;
-  background-color: #444444;
+  background-color: var(--card-background-color);
   border-radius: 3px;
   padding: 3px;
 }

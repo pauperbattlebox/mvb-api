@@ -2,8 +2,9 @@ body {
   font-family: 'Ubuntu', sans-serif;
   --background-color: #222222;
   --foreground-color: #171717;
-  --font-color: #ededed;
-  --link-color: #da0037;
+  --font-color: #e0f1f0;
+  --link-color: #188576;
+  --card-background-color: #653c66;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -19,8 +20,8 @@ body {
   align-content: center;
 }
 .hero-image{
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("dream.jpg");
-  height: 250px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("bridge.jpg");
+  height: 300px;
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -61,7 +62,7 @@ a {
 @media only screen and (max-width: 800px){
   .hero-image {
     height: 100px;
-    background-image: url("dream300.jpg");
+    background-image: url("bridge300.jpg");
     max-width: 100%;
   }
   .hero-text {
