@@ -1,9 +1,10 @@
 body {
   font-family: 'Ubuntu', sans-serif;
-  --background-color: #222222;
-  --foreground-color: #171717;
-  --font-color: #ededed;
-  --link-color: #da0037;
+  --background-color: #111111;
+  --foreground-color: #06224a;
+  --font-color: #fde5fe;
+  --link-color: #fd008c;
+  --card-background-color: #2e2f7e;
   display: flex;
   flex-flow: column;
   justify-content: center;
@@ -19,7 +20,7 @@ body {
   align-content: center;
 }
 .hero-image{
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("dream.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("dream2.jpg");
   height: 250px;
   width: 100%;
   background-position: center;
@@ -60,8 +61,8 @@ a {
 
 @media only screen and (max-width: 800px){
   .hero-image {
-    height: 100px;
-    background-image: url("dream300.jpg");
+    height: 150px;
+    background-image: url("dream2sm.jpg");
     max-width: 100%;
   }
   .hero-text {
