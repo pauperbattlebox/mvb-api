@@ -18,6 +18,15 @@ class Cards(db.Model):
     mtgjson_code = db.Column(db.String(10))
     prices = db.relationship('Prices', backref='cards', uselist=False)
 
+    @classmethod
+    def filter_args(cls, args):
+
+        search_args = [getattr(cls, i) for i in args]
+
+        return cls.query.with_entities(cls.cs_id, *search_args)
+
+
+
 class Sets(db.Model):
     __tablename__ = 'sets'
     __table_args__ = {'extend_existing': True}
