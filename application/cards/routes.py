@@ -1,5 +1,6 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, abort
 from flask import current_app as app
+from marshmallow.exceptions import ValidationError
 
 from application.models import Cards, Prices, Meta
 from application.schemas import card_schema, cards_schema, card_with_related_printings_schema, meta_schema, cardssearchschema
@@ -43,7 +44,11 @@ def get_all_ids():
 @limiter.limit("25/minute")
 def search_by_card_name():
 
-    args = cardssearchschema.load(request.args)
+    try:
+        args = cardssearchschema.load(request.args)
+
+    except ValidationError as e:
+        abort(400, e.messages)
 
     filtered_args = dict()
 
