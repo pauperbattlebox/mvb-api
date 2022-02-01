@@ -4,7 +4,6 @@ from marshmallow.exceptions import ValidationError
 
 from application.models import Cards, Prices, Meta
 from application.schemas import card_schema, cards_schema, card_with_related_printings_schema, meta_schema, cardssearchschema
-
 from application import current_version, cache, limiter
 
 cards = Blueprint('cards', __name__)
@@ -61,7 +60,6 @@ def search_by_card_name():
     if 'name' in args and args['name'] != None:
 
         search = f"%{args['name']}%"
-
         q = q.filter(Cards.name.ilike(search))
 
     q = q.filter_by(**filtered_args).all()
