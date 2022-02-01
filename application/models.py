@@ -21,9 +21,8 @@ class Cards(db.Model):
     @classmethod
     def filter_args(cls, args):
 
-        search_args = [getattr(cls, i) for i in args]
-
-        return cls.query.with_entities(cls.cs_id, *search_args)
+        
+        return cls.query.filter(args)
 
 
 

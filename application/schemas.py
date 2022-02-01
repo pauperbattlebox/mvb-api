@@ -46,6 +46,20 @@ class CardsSearchArgsSchema(Schema):
 
 cardssearchargsschema = CardsSearchArgsSchema()
 
+class CardsSearchSchema(Schema):
+    name = fields.Str(missing='')
+    edition = fields.Str()
+    is_foil = fields.Boolean(missing=False)
+    collector_number = fields.Str(missing='')
+    mtgjson_code = fields.Str(missing='')
+
+    class Meta:
+        unknown = EXCLUDE
+
+cardssearchschema = CardsSearchSchema()
+
+
+
 price_schema = PricesSchema()
 prices_schema = PricesSchema(many=True)
 

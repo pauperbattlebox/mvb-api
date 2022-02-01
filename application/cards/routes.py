@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask import current_app as app
 
 from application.models import Cards, Prices, Meta
-from application.schemas import card_schema, cards_schema, card_with_related_printings_schema, meta_schema, cardssearchargsschema
+from application.schemas import card_schema, cards_schema, card_with_related_printings_schema, meta_schema, cardssearchargsschema, cardssearchschema
 
 from application import current_version, cache, limiter
 
@@ -43,19 +43,53 @@ def get_all_ids():
 @limiter.limit("25/minute")
 def search_by_card_name(card_name):
 
-    args = cardssearchargsschema.load(request.args)
+    #args = cardssearchargsschema.load(request.args)
 
-    filtered_args = []
+    args = cardssearchschema.load(request.args)
+
+    print(args)
+
+    filtered_args = dict()
 
     for (k, v) in args.items():
-        if v == True:
-            filtered_args.append(k)
+        if v:
+            filtered_args[k] = v
 
-    q = Cards.filter_args(filtered_args)
+    print(filtered_args)
 
     search = f"%{card_name}%"
 
-    q = q.filter(Cards.name.ilike(search)).all()
+    q = Cards.query.filter(Cards.name.ilike(search)).filter_by(**filtered_args).all()
+
+    print(q)
+
+
+    #filtered_args = []
+
+    # for (k, v) in args.items():
+    #     if v == True:
+    #         filtered_args.append(k)
+
+    #search_args = cardssearchschema.load(Cards)
+
+
+
+    #q = Cards.filter_args(filtered_args).all()
+
+    #print(q)
+
+
+
+
+    #q = Cards.query.filter(*search_args).all()
+
+
+
+    #q = Cards.filter_args(filtered_args)
+
+
+
+    #q = q.filter(Cards.name.ilike(search)).all()
 
     result = cards_schema.dump(q)
 
