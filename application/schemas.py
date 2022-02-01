@@ -34,21 +34,9 @@ class CardsSchema(Schema):
     class Meta:
         ordered = True
 
-class CardsSearchArgsSchema(Schema):
-    name = fields.Boolean(missing = False)
-    edition = fields.Boolean(missing = False)
-    is_foil = fields.Boolean(missing = False)
-    collector_number = fields.Boolean(missing = False)
-    mtgjson_code = fields.Boolean(missing = False)
-
-    class Meta:
-        unknown = EXCLUDE
-
-cardssearchargsschema = CardsSearchArgsSchema()
-
 class CardsSearchSchema(Schema):
     name = fields.Str(missing='')
-    edition = fields.Str()
+    edition = fields.Str(missing='')
     is_foil = fields.Boolean(missing=False)
     collector_number = fields.Str(missing='')
     mtgjson_code = fields.Str(missing='')
