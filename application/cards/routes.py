@@ -43,6 +43,9 @@ def get_all_ids():
 @limiter.limit("25/minute")
 def search_by_card_name():
 
+    if not request.args:
+        abort(400, "Please enter at least one query parameter")
+
     try:
         args = cardssearchschema.load(request.args)
 
