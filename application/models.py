@@ -8,7 +8,6 @@ class Cards(db.Model):
     cs_id = db.Column(db.Integer, unique = True)
     url = db.Column(db.String(50))
     name = db.Column(db.String(100))
-    variant = db.Column(db.String(500))
     edition = db.Column(db.String(500))
     is_foil = db.Column(db.Boolean)
     mtgjson_id = db.Column(db.String(100))
@@ -17,6 +16,7 @@ class Cards(db.Model):
     matched_by_image = db.Column(db.Boolean)
     mtgjson_code = db.Column(db.String(10))
     prices = db.relationship('Prices', backref='cards', uselist=False)
+
 
 class Sets(db.Model):
     __tablename__ = 'sets'

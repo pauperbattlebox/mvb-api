@@ -1,6 +1,6 @@
 from flask import Flask
 from werkzeug.middleware.proxy_fix import ProxyFix
-from .extensions import db, migrate, cache, limiter
+from .extensions import db, cache, limiter
 
 current_version = '/api/v1/'
 
@@ -10,7 +10,6 @@ def create_app():
     app.config.from_pyfile("config.py")
 
     db.init_app(app)
-    migrate.init_app(app, db)
     cache.init_app(app)
     limiter.init_app(app)
 

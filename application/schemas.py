@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields
+from marshmallow import Schema, fields, EXCLUDE
 from application.models import Sets, Cards, Meta
 
 class SetsSchema(Schema):
@@ -33,6 +33,20 @@ class CardsSchema(Schema):
 
     class Meta:
         ordered = True
+
+class CardsSearchSchema(Schema):
+    name = fields.Str(missing='')
+    edition = fields.Str(missing='')
+    is_foil = fields.Boolean(missing=False)
+    collector_number = fields.Str(missing='')
+    mtgjson_code = fields.Str(missing='')
+
+    class Meta:
+        unknown = EXCLUDE
+
+cardssearchschema = CardsSearchSchema()
+
+
 
 price_schema = PricesSchema()
 prices_schema = PricesSchema(many=True)

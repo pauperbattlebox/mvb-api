@@ -1,9 +1,9 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, abort
 from flask import current_app as app
+from marshmallow.exceptions import ValidationError
 
 from application.models import Cards, Prices, Meta
-from application.schemas import card_schema, cards_schema, card_with_related_printings_schema, meta_schema
-
+from application.schemas import card_schema, cards_schema, card_with_related_printings_schema, meta_schema, cardssearchschema
 from application import current_version, cache, limiter
 
 cards = Blueprint('cards', __name__)
@@ -39,13 +39,33 @@ def get_all_ids():
 
 
 ####SEARCH BY CARD NAME
-@cards.route(current_version + 'cards/search/<card_name>')
+@cards.route(current_version + 'cards/search')
 @limiter.limit("25/minute")
-def search_by_card_name(card_name):
+def search_by_card_name():
 
-    search = f"%{card_name}%"
+    if not request.args:
+        abort(400, "Please enter at least one query parameter")
 
-    q = Cards.query.filter(Cards.name.ilike(search)).all()
+    try:
+        args = cardssearchschema.load(request.args)
+
+    except ValidationError as e:
+        abort(400, e.messages)
+
+    filtered_args = dict()
+
+    for (k, v) in args.items():
+        if v and k != 'name':
+            filtered_args[k] = v
+
+    q = Cards.query
+
+    if 'name' in args and args['name'] != None:
+
+        search = f"%{args['name']}%"
+        q = q.filter(Cards.name.ilike(search))
+
+    q = q.filter_by(**filtered_args).all()
 
     result = cards_schema.dump(q)
 
