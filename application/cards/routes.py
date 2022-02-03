@@ -22,7 +22,7 @@ def get_cache():
 
 ################ GET MULTIPLE CARDS ###########################
 ####GET ALL CARDS
-@cards.route(current_version + 'cards/all')
+@cards.route(current_version + 'cards')
 @limiter.limit("5/hour")
 @cache.cached(timeout=86400)
 def get_all_ids():
@@ -74,7 +74,7 @@ def search_by_card_name():
 
 ################# GET SINGLE CARD ############################
 ####GET CARD BY CS ID
-@cards.route(current_version + '/cards/<cs_id>')
+@cards.route(current_version + '/cards/cs/<cs_id>')
 @limiter.limit("50/minute")
 @cache.cached(timeout=86400)
 def get_by_cs_id(cs_id):
@@ -94,21 +94,8 @@ def get_by_cs_id(cs_id):
     return jsonify(result)
 
 
-####GET CARDS BY MTGJSON CODE
-@cards.route(current_version + '/cards/mtgjson/<mtgjson_code>')
-@limiter.limit("50/minute")
-@cache.cached(timeout=86400)
-def get_by_mtgjson_code(mtgjson_code):
-
-    q = Cards.query.filter(Cards.mtgjson_code == mtgjson_code).all()
-
-    result = cards_schema.dump(q)
-
-    return jsonify(result)
-
-
 ####GET CARD BY MTGJSON ID
-@cards.route(current_version + '/cards/mtgjsonid/<mtgjson_id>')
+@cards.route(current_version + '/cards/mtgjson/<mtgjson_id>')
 @limiter.limit("100/minute")
 @cache.cached(timeout=86400)
 def get_by_mtgjson_id(mtgjson_id):
@@ -121,7 +108,7 @@ def get_by_mtgjson_id(mtgjson_id):
 
 
 ####GET CARD BY SCRYFALL ID
-@cards.route(current_version + '/cards/scryfallid/<scryfall_id>')
+@cards.route(current_version + '/cards/scryfall/<scryfall_id>')
 @limiter.limit("100/minute")
 @cache.cached(timeout=86400)
 def get_by_scryfall_id(scryfall_id):

@@ -23,7 +23,7 @@ def get_all_sets():
 
 
 ###GET SET BY CS ID
-@sets.route(current_version + '/sets/<cs_id>')
+@sets.route(current_version + '/sets/cs/<cs_id>')
 @limiter.limit("50/minute")
 @cache.cached(timeout=86400)
 def get_set_by_set_name(cs_id):
