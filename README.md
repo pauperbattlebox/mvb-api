@@ -149,11 +149,11 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
 
   Returns the Cardsphere card details of the cards that best match the provided query parameters.
 
-  `name` (string, optional) - Query parameter to include search by card name. Allows partial matching.
-  `edition` (string, optional) - Query parameter to include search by card edition. Exact matching only.
-  `is_foil` (bool, optional) - Query parameter to include search by foil indicator. If true, only foil and etched foil results will be returned. If false, only nonfoil results will be returned. All finishes will be returned if the parameter is not provided.
-  `mtgjson_code` (string, optional) - Query parameter to include search by MTGJSON set code. Exact matching only.
-  `collector_number` (integer, optional) - Query parameter to include search by card collector number. Exact matching only.
+  `name` (string, optional) - Query parameter to include search by card name. Allows partial matching.  
+  `edition` (string, optional) - Query parameter to include search by card edition. Exact matching only.  
+  `is_foil` (bool, optional) - Query parameter to include search by foil indicator. If true, only foil and etched foil results will be returned. If false, only nonfoil results will be returned. All finishes will be returned if the parameter is not provided.  
+  `mtgjson_code` (string, optional) - Query parameter to include search by MTGJSON set code. Exact matching only.  
+  `collector_number` (integer, optional) - Query parameter to include search by card collector number. Exact matching only.  
 
   At least one search query parameter must be provided.
 
