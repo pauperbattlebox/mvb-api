@@ -62,10 +62,13 @@ def search_by_card_name():
 
     if 'name' in args and args['name'] != None:
 
-        search = f"%{args['name']}%"
+        search_term = args['name']
+
+        search = f"%{search_term}%"
+        
         q = q.filter(Cards.name.ilike(search))
 
-    q = q.filter_by(**filtered_args).all()
+    q = q.filter_by(**filtered_args).limit(100).all()
 
     result = cards_schema.dump(q)
 
