@@ -48,7 +48,7 @@ def get_set_by_set_name(cs_id):
 @cache.cached(timeout=86400)
 def get_set_by_mtgjson_code(mtgjson_code):
 
-    q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code).first_or_404()
+    q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code.upper()).first_or_404()
 
     result = set_with_cards_schema.dump(q)
 
