@@ -63,9 +63,7 @@ def search_by_card_name():
     if 'name' in args and args['name'] != None:
 
         search_term = args['name']
-
         search = f"%{search_term}%"
-        
         q = q.filter(Cards.name.ilike(search))
 
     q = q.filter_by(**filtered_args).limit(100).all()
@@ -103,9 +101,9 @@ def get_by_cs_id(cs_id):
 @cache.cached(timeout=86400)
 def get_by_mtgjson_id(mtgjson_id):
 
-    q = Cards.query.filter(Cards.mtgjson_id == mtgjson_id).first_or_404()
+    q = Cards.query.filter(Cards.mtgjson_id == mtgjson_id).all()
 
-    result = card_schema.dump(q)
+    result = cards_schema.dump(q)
 
     return jsonify(result)
 
@@ -116,8 +114,8 @@ def get_by_mtgjson_id(mtgjson_id):
 @cache.cached(timeout=86400)
 def get_by_scryfall_id(scryfall_id):
 
-    q = Cards.query.filter(Cards.scryfall_id == scryfall_id).first_or_404()
+    q = Cards.query.filter(Cards.scryfall_id == scryfall_id).all()
 
-    result = card_schema.dump(q)
+    result = cards_schema.dump(q)
 
     return jsonify(result)
