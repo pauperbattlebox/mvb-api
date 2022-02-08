@@ -62,7 +62,7 @@
                     <li>
                     <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
                     </a>
-                    /sets/{cs_id}
+                    /sets/cs/{cs_id}
                   </li>
                   <div class="list-info" x-show="open">
                     <li>Returns the Cardsphere set specified by the cs_id and a list of the cards in the set.</li>
@@ -90,7 +90,7 @@
                 <li>
                 <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
                 </a>
-                /cards/all
+                /cards
               </li>
               <div class="list-info" x-show="open">
                 <li>Returns the IDs for all cards in the database as well as the current state of the cache.</li>
@@ -101,7 +101,7 @@
                 <li>
                 <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
                 </a>
-                /cards/{cs_id}
+                /cards/cs/{cs_id}
               </li>
               <div class="list-info" x-show="open">
                 <li>Returns the Cardsphere card details specified by the cs_id.</li>
@@ -115,7 +115,7 @@
                 /cards/mtgjson/{mtgjson_code}
               </li>
               <div class="list-info" x-show="open">
-                <li>Returns the Cardsphere card details specified by the MTGJSON Set Code.</li>
+                <li>Returns the Cardsphere card details specified by the MTGJSON Id.</li>
               </div>
               </div>
 
@@ -123,18 +123,7 @@
                 <li>
                 <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
                 </a>
-                /cards/mtgjsonid/{mtgjson_id}
-              </li>
-              <div class="list-info" x-show="open">
-                <li>Returns the Cardsphere card details specified by the MTGJSON ID.</li>
-              </div>
-              </div>
-
-              <div class="list-item" x-data="{ open: false }" @click="open = ! open">
-                <li>
-                <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
-                </a>
-                /cards/scryfallid/{scryfall_id}
+                /cards/scryfall/{scryfall_id}
               </li>
               <div class="list-info" x-show="open">
                 <li>Returns the Cardsphere card details specified by the Scryfall ID.</li>
@@ -148,7 +137,7 @@
                 /cards/search/{string}
               </li>
               <div class="list-info" x-show="open">
-                <li>Returns the Cardsphere card details of the card whose name best matches the search string provided.</li>
+                <li>Returns the Cardsphere card details of the cards that best match the provided query parameters.</li>
               </div>
               </div>
 
