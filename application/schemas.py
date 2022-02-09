@@ -46,8 +46,6 @@ class CardsSearchSchema(Schema):
 
 cardssearchschema = CardsSearchSchema()
 
-
-
 price_schema = PricesSchema()
 prices_schema = PricesSchema(many=True)
 
@@ -56,6 +54,7 @@ cards_schema = CardsSchema(many=True)
 
 class SetsWithCardsSchema(SetsSchema):
 
+    sets = fields.List(fields.Nested(SetsSchema()))
     cards = fields.List(fields.Nested(CardsSchema()))
 
     class Meta:

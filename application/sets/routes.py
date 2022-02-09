@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify
 from flask import current_app as app
 
 from application.models import Sets, Cards
-from application.schemas import sets_schema, set_with_cards_schema, cards_schema
+from application.schemas import sets_schema, set_with_cards_schema, sets_with_cards_schema, cards_schema
 
 from application import current_version, cache, limiter
 
@@ -45,15 +45,27 @@ def get_set_by_set_name(cs_id):
 ####THIS MATCHES *.json file
 @sets.route(current_version + '/sets/mtgjson/<mtgjson_code>')
 @limiter.limit("50/minute")
-@cache.cached(timeout=86400)
+#@cache.cached(timeout=86400)
 def get_set_by_mtgjson_code(mtgjson_code):
 
-    q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code.upper()).first_or_404()
+    result = dict()
 
-    result = set_with_cards_schema.dump(q)
+    q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code.upper()).all()
 
-    p = Cards.query.filter(Cards.edition == result['cs_name']).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
+    result['sets'] = sets_with_cards_schema.dump(q)
+
+    p = Cards.query.filter(Cards.mtgjson_code == mtgjson_code).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
 
     result['cards'] = cards_schema.dump(p)
+
+    # for set in q:
+    #
+    #     result = sets_with_cards_schema.dump(q)
+    #
+    #     for r in result:
+    #
+    #         p = Cards.query.filter(Cards.edition == r['cs_name']).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
+    #
+    #         r['cards'] = cards_schema.dump(p)
 
     return jsonify(result)
