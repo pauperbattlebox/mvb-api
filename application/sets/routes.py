@@ -48,24 +48,24 @@ def get_set_by_set_name(cs_id):
 #@cache.cached(timeout=86400)
 def get_set_by_mtgjson_code(mtgjson_code):
 
-    result = dict()
-
+    # result = dict()
+    #
     q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code.upper()).all()
-
-    result['sets'] = sets_with_cards_schema.dump(q)
-
-    p = Cards.query.filter(Cards.mtgjson_code == mtgjson_code).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
-
-    result['cards'] = cards_schema.dump(p)
-
-    # for set in q:
     #
-    #     result = sets_with_cards_schema.dump(q)
+    # result['sets'] = sets_with_cards_schema.dump(q)
     #
-    #     for r in result:
+    # p = Cards.query.filter(Cards.mtgjson_code == mtgjson_code).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
     #
-    #         p = Cards.query.filter(Cards.edition == r['cs_name']).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
-    #
-    #         r['cards'] = cards_schema.dump(p)
+    # result['cards'] = cards_schema.dump(p)
+
+    for set in q:
+
+        result = sets_with_cards_schema.dump(q)
+
+        for r in result:
+
+            p = Cards.query.filter(Cards.edition == r['cs_name']).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
+
+            r['cards'] = cards_schema.dump(p)
 
     return jsonify(result)
