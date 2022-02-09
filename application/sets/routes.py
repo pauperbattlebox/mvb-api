@@ -1,10 +1,11 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint
 from flask import current_app as app
+from flask import jsonify
 
-from application.models import Sets, Cards
-from application.schemas import sets_schema, set_with_cards_schema, cards_schema
-
-from application import current_version, cache, limiter
+from application import cache, current_version, limiter
+from application.models import Cards, Sets
+from application.schemas import (cards_schema, set_with_cards_schema,
+                                 sets_schema)
 
 sets = Blueprint('sets', __name__)
 

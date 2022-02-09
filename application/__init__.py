@@ -1,6 +1,7 @@
 from flask import Flask
 from werkzeug.middleware.proxy_fix import ProxyFix
-from .extensions import db, cache, limiter
+
+from .extensions import cache, db, limiter
 
 current_version = '/api/v1/'
 
@@ -20,10 +21,10 @@ def create_app():
 
         app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1)
 
-        from .core.routes import core
-        from .sets.routes import sets
         from .cards.routes import cards
+        from .core.routes import core
         from .errors.errors import errors
+        from .sets.routes import sets
 
         app.register_blueprint(core)
         app.register_blueprint(sets)

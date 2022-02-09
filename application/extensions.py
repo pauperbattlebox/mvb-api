@@ -1,9 +1,10 @@
-from flask_sqlalchemy import SQLAlchemy
+from os import environ, path
+
+from dotenv import load_dotenv
 from flask_caching import Cache
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
-from os import environ, path
-from dotenv import load_dotenv
+from flask_sqlalchemy import SQLAlchemy
 
 basedir = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(basedir, '.env'))
