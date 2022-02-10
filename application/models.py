@@ -1,5 +1,7 @@
-from .extensions import db
 import datetime
+
+from .extensions import db
+
 
 class Cards(db.Model):
     __tablename__ = 'cards'

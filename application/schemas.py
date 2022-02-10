@@ -1,5 +1,7 @@
-from marshmallow import Schema, fields, EXCLUDE
-from application.models import Sets, Cards, Meta
+from marshmallow import EXCLUDE, Schema, fields
+
+from application.models import Cards, Meta, Sets
+
 
 class SetsSchema(Schema):
 
@@ -54,7 +56,7 @@ cards_schema = CardsSchema(many=True)
 
 class SetsWithCardsSchema(SetsSchema):
 
-    sets = fields.List(fields.Nested(SetsSchema()))
+    #sets = fields.List(fields.Nested(SetsSchema()))
     cards = fields.List(fields.Nested(CardsSchema()))
 
     class Meta:

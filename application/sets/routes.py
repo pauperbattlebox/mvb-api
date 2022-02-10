@@ -1,10 +1,11 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint
 from flask import current_app as app
+from flask import jsonify
 
-from application.models import Sets, Cards
-from application.schemas import sets_schema, set_with_cards_schema, sets_with_cards_schema, cards_schema
-
-from application import current_version, cache, limiter
+from application import cache, current_version, limiter
+from application.models import Cards, Sets
+from application.schemas import (cards_schema, set_with_cards_schema,
+                                 sets_schema, sets_with_cards_schema)
 
 sets = Blueprint('sets', __name__)
 
@@ -48,24 +49,24 @@ def get_set_by_set_name(cs_id):
 #@cache.cached(timeout=86400)
 def get_set_by_mtgjson_code(mtgjson_code):
 
-    # result = dict()
-    #
+    #result = dict()
+
     q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code.upper()).all()
+
+    result = sets_with_cards_schema.dump(q)
+
+    p = Cards.query.filter(Cards.mtgjson_code == mtgjson_code).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
+
+    result[-1]['cards'] = cards_schema.dump(p)
+
+    # for set in q:
     #
-    # result['sets'] = sets_with_cards_schema.dump(q)
+    #     result = sets_with_cards_schema.dump(q)
     #
-    # p = Cards.query.filter(Cards.mtgjson_code == mtgjson_code).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
+    #     for r in result:
     #
-    # result['cards'] = cards_schema.dump(p)
-
-    for set in q:
-
-        result = sets_with_cards_schema.dump(q)
-
-        for r in result:
-
-            p = Cards.query.filter(Cards.edition == r['cs_name']).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
-
-            r['cards'] = cards_schema.dump(p)
+    #         p = Cards.query.filter(Cards.edition == r['cs_name']).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
+    #
+    #         r['cards'] = cards_schema.dump(p)
 
     return jsonify(result)
