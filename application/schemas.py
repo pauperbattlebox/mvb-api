@@ -55,8 +55,7 @@ card_schema = CardsSchema()
 cards_schema = CardsSchema(many=True)
 
 class SetsWithCardsSchema(SetsSchema):
-
-    #sets = fields.List(fields.Nested(SetsSchema()))
+    
     cards = fields.List(fields.Nested(CardsSchema(only=(
         "name",
         "is_foil",
