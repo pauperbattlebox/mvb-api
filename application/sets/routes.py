@@ -46,33 +46,11 @@ def get_set_by_set_name(cs_id):
 ####THIS MATCHES *.json file
 @sets.route(current_version + '/sets/mtgjson/<mtgjson_code>')
 @limiter.limit("50/minute")
-#@cache.cached(timeout=86400)
+@cache.cached(timeout=86400)
 def get_set_by_mtgjson_code(mtgjson_code):
-
-    #result = dict()
 
     q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code.upper()).all()
 
     result = sets_with_cards_schema.dump(q)
-
-    # for card in q:
-    #
-    #     card_set = card.cards.all()
-    #
-    #     print(card_set)
-
-    # p = Cards.query.filter(Cards.mtgjson_code == mtgjson_code).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
-    #
-    # result[-1]['cards'] = cards_schema.dump(p)
-
-    # for set in q:
-    #
-    #     result = sets_with_cards_schema.dump(q)
-    #
-    #     for r in result:
-    #
-    #         p = Cards.query.filter(Cards.edition == r['cs_name']).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
-    #
-    #         r['cards'] = cards_schema.dump(p)
 
     return jsonify(result)

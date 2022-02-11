@@ -57,7 +57,14 @@ cards_schema = CardsSchema(many=True)
 class SetsWithCardsSchema(SetsSchema):
 
     #sets = fields.List(fields.Nested(SetsSchema()))
-    cards = fields.List(fields.Nested(CardsSchema(only=("name", "is_foil", "mtgjson_id", "scryfall_id", "collector_number", "prices"))))
+    cards = fields.List(fields.Nested(CardsSchema(only=(
+        "name",
+        "is_foil",
+        "mtgjson_id",
+        "scryfall_id",
+        "collector_number",
+        "prices")
+    )))
 
     class Meta:
         ordered = True
