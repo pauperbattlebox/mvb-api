@@ -55,9 +55,15 @@ def get_set_by_mtgjson_code(mtgjson_code):
 
     result = sets_with_cards_schema.dump(q)
 
-    p = Cards.query.filter(Cards.mtgjson_code == mtgjson_code).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
+    # for card in q:
+    #
+    #     card_set = card.cards.all()
+    #
+    #     print(card_set)
 
-    result[-1]['cards'] = cards_schema.dump(p)
+    # p = Cards.query.filter(Cards.mtgjson_code == mtgjson_code).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
+    #
+    # result[-1]['cards'] = cards_schema.dump(p)
 
     # for set in q:
     #

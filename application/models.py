@@ -18,6 +18,7 @@ class Cards(db.Model):
     matched_by_image = db.Column(db.Boolean)
     mtgjson_code = db.Column(db.String(10))
     prices = db.relationship('Prices', backref='cards', uselist=False)
+    set_id = db.Column(db.Integer, db.ForeignKey('sets.id'))
 
 
 class Sets(db.Model):
@@ -28,6 +29,7 @@ class Sets(db.Model):
     cs_name = db.Column(db.String(100))
     mtgjson_code = db.Column(db.String(100))
     map = db.Column(db.String(50))
+    cards = db.relationship('Cards', backref='sets', lazy='dynamic')
 
 class Prices(db.Model):
     __tablename__ = 'prices'
