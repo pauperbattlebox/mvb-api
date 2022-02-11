@@ -10,6 +10,9 @@ class SetsSchema(Schema):
     mtgjson_code = fields.Str()
     related_mtgjson_codes = fields.List(fields.Str())
 
+    class Meta:
+        ordered = True
+
 set_schema = SetsSchema()
 sets_schema = SetsSchema(many=True)
 
@@ -55,7 +58,7 @@ card_schema = CardsSchema()
 cards_schema = CardsSchema(many=True)
 
 class SetsWithCardsSchema(SetsSchema):
-    
+
     cards = fields.List(fields.Nested(CardsSchema(only=(
         "name",
         "is_foil",
