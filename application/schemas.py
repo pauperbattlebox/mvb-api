@@ -48,8 +48,6 @@ class CardsSearchSchema(Schema):
 
 cardssearchschema = CardsSearchSchema()
 
-
-
 price_schema = PricesSchema()
 prices_schema = PricesSchema(many=True)
 
@@ -57,8 +55,15 @@ card_schema = CardsSchema()
 cards_schema = CardsSchema(many=True)
 
 class SetsWithCardsSchema(SetsSchema):
-
-    cards = fields.List(fields.Nested(CardsSchema()))
+    
+    cards = fields.List(fields.Nested(CardsSchema(only=(
+        "name",
+        "is_foil",
+        "mtgjson_id",
+        "scryfall_id",
+        "collector_number",
+        "prices")
+    )))
 
     class Meta:
         ordered = True

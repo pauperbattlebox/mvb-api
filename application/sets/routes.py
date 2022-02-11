@@ -4,8 +4,9 @@ from flask import jsonify
 
 from application import cache, current_version, limiter
 from application.models import Cards, Sets
-from application.schemas import (cards_schema, set_with_cards_schema,
-                                 sets_schema)
+
+from application.schemas import (cards_schema, set_with_cards_schema, sets_schema, sets_with_cards_schema)
+
 
 sets = Blueprint('sets', __name__)
 
@@ -49,12 +50,8 @@ def get_set_by_set_name(cs_id):
 @cache.cached(timeout=86400)
 def get_set_by_mtgjson_code(mtgjson_code):
 
-    q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code.upper()).first_or_404()
+    q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code.upper()).all()
 
-    result = set_with_cards_schema.dump(q)
-
-    p = Cards.query.filter(Cards.edition == result['cs_name']).order_by(Cards.name.asc(), Cards.is_foil.asc()).all()
-
-    result['cards'] = cards_schema.dump(p)
+    result = sets_with_cards_schema.dump(q)
 
     return jsonify(result)
