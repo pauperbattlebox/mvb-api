@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, abort
 from flask import current_app as app
 from flask import jsonify
 
@@ -52,6 +52,10 @@ def get_set_by_mtgjson_code(mtgjson_code):
 
     q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code.upper()).all()
 
-    result = sets_with_cards_schema.dump(q)
+    if len(q) < 1:
+        abort(404)
+        
+    else:
 
-    return jsonify(result)
+        result = sets_with_cards_schema.dump(q)
+        return jsonify(result)
