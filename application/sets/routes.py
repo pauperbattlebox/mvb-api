@@ -4,9 +4,8 @@ from flask import jsonify
 
 from application import cache, current_version, limiter
 from application.models import Cards, Sets
-
-from application.schemas import (cards_schema, set_with_cards_schema, sets_schema, sets_with_cards_schema)
-
+from application.schemas import (cards_schema, set_with_cards_schema,
+                                 sets_schema, sets_with_cards_schema)
 
 sets = Blueprint('sets', __name__)
 

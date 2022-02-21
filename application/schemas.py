@@ -1,6 +1,6 @@
 from marshmallow import EXCLUDE, Schema, fields
 
-from application.models import Sets, Cards, Meta
+from application.models import Cards, Meta, Sets
 
 
 class SetsSchema(Schema):
