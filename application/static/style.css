@@ -20,8 +20,8 @@ body {
   align-content: center;
 }
 .hero-image{
-  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("dream2.jpg");
-  height: 250px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("bridge300.jpg");
+  height: 350px;
   width: 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -39,7 +39,7 @@ body {
   transform: translate(-50%, -50%);
   color: White;
   text-shadow: 2px 2px black;
-  font-size: 50px;
+  font-size: 56px;
   font-weight: bolder;
 }
 
@@ -62,8 +62,8 @@ a {
 
 @media only screen and (max-width: 800px){
   .hero-image {
-    height: 150px;
-    background-image: url("dream2sm.jpg");
+    height: 175px;
+    background-image: url("bridge300sm.jpg");
     max-width: 100%;
   }
   .hero-text {
