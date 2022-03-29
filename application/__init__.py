@@ -3,7 +3,8 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 
 from .extensions import cache, db, limiter
 
-current_version = '/api/v1/'
+current_version = "/api/v1/"
+
 
 def create_app():
     app = Flask(__name__)
@@ -15,7 +16,6 @@ def create_app():
     limiter.init_app(app)
 
     from application import models
-
 
     with app.app_context():
 

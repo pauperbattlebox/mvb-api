@@ -4,9 +4,10 @@ from flask import render_template
 
 from application import current_version
 
-core = Blueprint('core', __name__)
+core = Blueprint("core", __name__)
 
-@core.route('/')
+
+@core.route("/")
 def home():
     return render_template("index.html")
 

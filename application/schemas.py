@@ -13,8 +13,10 @@ class SetsSchema(Schema):
     class Meta:
         ordered = True
 
+
 set_schema = SetsSchema()
 sets_schema = SetsSchema(many=True)
+
 
 class PricesSchema(Schema):
     price = fields.Float()
@@ -22,6 +24,7 @@ class PricesSchema(Schema):
 
     class Meta:
         ordered = True
+
 
 class CardsSchema(Schema):
 
@@ -39,15 +42,17 @@ class CardsSchema(Schema):
     class Meta:
         ordered = True
 
+
 class CardsSearchSchema(Schema):
-    name = fields.Str(missing='')
-    edition = fields.Str(missing='')
-    is_foil = fields.Boolean(missing=False)
-    collector_number = fields.Str(missing='')
-    mtgjson_code = fields.Str(missing='')
+    name = fields.Str()
+    edition = fields.Str()
+    is_foil = fields.Boolean()
+    collector_number = fields.Str()
+    mtgjson_code = fields.Str()
 
     class Meta:
         unknown = EXCLUDE
+
 
 cardssearchschema = CardsSearchSchema()
 
@@ -57,22 +62,31 @@ prices_schema = PricesSchema(many=True)
 card_schema = CardsSchema()
 cards_schema = CardsSchema(many=True)
 
+
 class SetsWithCardsSchema(SetsSchema):
 
-    cards = fields.List(fields.Nested(CardsSchema(only=(
-        "name",
-        "is_foil",
-        "mtgjson_id",
-        "scryfall_id",
-        "collector_number",
-        "prices")
-    )))
+    cards = fields.List(
+        fields.Nested(
+            CardsSchema(
+                only=(
+                    "name",
+                    "is_foil",
+                    "mtgjson_id",
+                    "scryfall_id",
+                    "collector_number",
+                    "prices",
+                )
+            )
+        )
+    )
 
     class Meta:
         ordered = True
 
+
 set_with_cards_schema = SetsWithCardsSchema()
 sets_with_cards_schema = SetsWithCardsSchema(many=True)
+
 
 class CardsWithRelatedPrintingsSchema(CardsSchema):
 
@@ -81,12 +95,15 @@ class CardsWithRelatedPrintingsSchema(CardsSchema):
     class Meta:
         ordered = True
 
+
 card_with_related_printings_schema = CardsWithRelatedPrintingsSchema()
 cards_with_related_printings_schema = CardsWithRelatedPrintingsSchema(many=True)
+
 
 class MetaSchema(Schema):
 
     last_updated = fields.DateTime("%Y-%m-%d %H:%M")
     cards = fields.List(fields.Nested(CardsSchema()))
+
 
 meta_schema = MetaSchema()
