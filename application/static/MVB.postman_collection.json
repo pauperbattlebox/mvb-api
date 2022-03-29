@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "eb2273ba-4462-4f80-821e-ce218799f81a",
+		"name": "MVB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Cache",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mvb-api-dev.herokuapp.com/api/v1/cache",
+					"protocol": "https",
+					"host": [
+						"mvb-api-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cache"
+					]
+				},
+				"description": "Returns information about the current state of the cache. Card and pricing data is cached and refreshed once per day."
+			},
+			"response": []
+		},
+		{
+			"name": "Cards/ALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mvb-api-dev.herokuapp.com/api/v1/cards",
+					"protocol": "https",
+					"host": [
+						"mvb-api-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cards"
+					]
+				},
+				"description": "Returns a list of all Cardsphere cards by cs_id, along with their associated mtgjson_id and scryfall_id. (\\~9MB)"
+			},
+			"response": []
+		},
+		{
+			"name": "Cards/CS_ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mvb-api-dev.herokuapp.com/api/v1/cards/cs/1?includeRelatedPrintings=True",
+					"protocol": "https",
+					"host": [
+						"mvb-api-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cards",
+						"cs",
+						"1"
+					],
+					"query": [
+						{
+							"key": "includeRelatedPrintings",
+							"value": "True"
+						}
+					]
+				},
+				"description": "Returns the Cardsphere card details specified by the cs_id.\n\n> `includeRelatedPrintings` (bool, optional) - Query parameter to include the other printings of the specified card."
+			},
+			"response": []
+		},
+		{
+			"name": "Cards/MTGJSON_ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mvb-api-dev.herokuapp.com/api/v1/cards/mtgjson/1669af17-d287-5094-b005-4b143441442f",
+					"protocol": "https",
+					"host": [
+						"mvb-api-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cards",
+						"mtgjson",
+						"1669af17-d287-5094-b005-4b143441442f"
+					]
+				},
+				"description": "Returns the Cardsphere card details specified by the MTGJSON Id."
+			},
+			"response": []
+		},
+		{
+			"name": "Cards/SCRYFALL_ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mvb-api-dev.herokuapp.com/api/v1/cards/scryfall/46184f97-d5c9-4a98-9fd9-e19057ce9b7e",
+					"protocol": "https",
+					"host": [
+						"mvb-api-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cards",
+						"scryfall",
+						"46184f97-d5c9-4a98-9fd9-e19057ce9b7e"
+					]
+				},
+				"description": "Returns the Cardsphere card details specified by the Scryfall Id."
+			},
+			"response": []
+		},
+		{
+			"name": "Cards/SEARCH",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mvb-api-dev.herokuapp.com/api/v1/cards/search?name=leyline&mtgjson_code=TSR&is_foil=true",
+					"protocol": "https",
+					"host": [
+						"mvb-api-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"cards",
+						"search"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "leyline"
+						},
+						{
+							"key": "mtgjson_code",
+							"value": "TSR"
+						},
+						{
+							"key": "is_foil",
+							"value": "true"
+						}
+					]
+				},
+				"description": "Returns the Cardsphere card details of the cards that best match the provided query parameters.\n\n> `name` (string, optional) - Query parameter to include search by card name. Allows partial matching.  \n> `edition` (string, optional) - Query parameter to include search by card edition. Exact matching only.  \n> `is_foil` (bool, optional) - Query parameter to include search by foil indicator. If true, only foil and etched foil results will be returned. If false, only nonfoil results will be returned. All finishes will be returned if the parameter is not provided.  \n> `mtgjson_code` (string, optional) - Query parameter to include search by MTGJSON set code. Exact matching only.  \n> `collector_number` (integer, optional) - Query parameter to include search by card collector number. Exact matching only.\n\nAt least one search query parameter must be provided."
+			},
+			"response": []
+		},
+		{
+			"name": "Sets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mvb-api-dev.herokuapp.com/api/v1/sets",
+					"protocol": "https",
+					"host": [
+						"mvb-api-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"sets"
+					]
+				},
+				"description": "Returns a list of all Cardsphere sets including that set's MTGJSON equivalent code value."
+			},
+			"response": []
+		},
+		{
+			"name": "Sets/CS_ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mvb-api-dev.herokuapp.com/api/v1/sets/cs/965",
+					"protocol": "https",
+					"host": [
+						"mvb-api-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"sets",
+						"cs",
+						"965"
+					]
+				},
+				"description": "Returns the Cardsphere set specified by the cs_id and a list of the cards in the set."
+			},
+			"response": []
+		},
+		{
+			"name": "Sets/MTGJSON",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://mvb-api-dev.herokuapp.com/api/v1/sets/mtgjson/MID",
+					"protocol": "https",
+					"host": [
+						"mvb-api-dev",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"sets",
+						"mtgjson",
+						"MID"
+					]
+				},
+				"description": "Returns the Cardsphere set specified by the MTGJSON set code and a list of the cards in the set."
+			},
+			"response": []
+		}
+	]
+}
