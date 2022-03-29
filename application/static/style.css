@@ -3,8 +3,8 @@ body {
   --background-color: #111111;
   --foreground-color: #06224a;
   --font-color: #ffffff;
-  --link-color: #fd008c;
-  --card-background-color: #2e2f7e;
+  --link-color: #3baf8a;
+  --card-background-color: #263d71;
   display: flex;
   flex-flow: column;
   justify-content: center;
