@@ -52,8 +52,8 @@ def get_all_ids():
 
 
 ####SEARCH BY CARD NAME
-@cards.route(current_version + "cards/search")
-@limiter.limit("25/minute")
+@cards.route(current_version + 'cards/search')
+@limiter.limit("100/minute")
 def search_by_card_name():
 
     if not request.args:
