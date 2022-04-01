@@ -3,6 +3,9 @@ The Multiverse Bridge is a Cardsphere community-built project aimed to help tran
 
 The project leverages existing tools MTGJSON and Scryfall to provide the data to enable consumers to translate their Cardsphere collection data to another platform that supports MTGJSON or Scryfall identifiers.
 
+## Base URL
+/api/v1
+
 ## APIs
 
 <details>
