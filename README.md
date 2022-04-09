@@ -3,7 +3,7 @@ The Multiverse Bridge is a Cardsphere community-built project aimed to help tran
 
 The project leverages existing tools MTGJSON and Scryfall to provide the data to enable consumers to translate their Cardsphere collection data to another platform that supports MTGJSON or Scryfall identifiers.
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/pauperbattlebox/mvb-api) ![GitHub commit activity](https://img.shields.io/github/contributors/pauperbattlebox/mvb-api) ![GitHub commit activity](https://img.shields.io/github/license/pauperbattlebox/mvb-api) ![GitHub commit activity](https://img.shields.io/discord/944333553779503135)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/pauperbattlebox/mvb-api) ![GitHub commit activity](https://img.shields.io/github/contributors/pauperbattlebox/mvb-api) ![GitHub commit activity](https://img.shields.io/github/license/pauperbattlebox/mvb-api)
 
 
 ## Base URL
