@@ -94,7 +94,7 @@ def search_by_card_name():
 ################# GET SINGLE CARD ############################
 ####GET CARD BY CS ID
 @cards.route(current_version + "/cards/cs/<cs_id>")
-@limiter.limit("50/minute")
+@limiter.limit("100/minute")
 @cache.cached(timeout=86400, query_string=True)
 def get_by_cs_id(cs_id):
     args = request.args
