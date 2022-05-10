@@ -26,7 +26,7 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
 <details>
   <summary>GET /cards</summary>
   
-  Returns the IDs for all cards in the database as well as the current state of the cache.
+  Returns the IDs for all cards in the database as well as the current state of the cache. (~10 MB)
   
   ```
   {
