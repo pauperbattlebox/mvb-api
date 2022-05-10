@@ -137,7 +137,7 @@ def get_by_mtgjson_id(mtgjson_id):
 
 ####GET CARD BY SCRYFALL ID
 @cards.route(current_version + "/cards/scryfall/<scryfall_id>")
-@limiter.limit("100/minute")
+@limiter.limit("120/minute")
 @cache.cached(timeout=86400)
 def get_by_scryfall_id(scryfall_id):
 
