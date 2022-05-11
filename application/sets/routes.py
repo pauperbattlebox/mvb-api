@@ -29,7 +29,7 @@ def get_all_sets():
 
 ###GET SET BY CS ID
 @sets.route(current_version + "/sets/cs/<cs_id>")
-@limiter.limit("50/minute")
+@limiter.limit("60/minute")
 @cache.cached(timeout=86400)
 def get_set_by_set_name(cs_id):
 
@@ -61,7 +61,7 @@ def get_set_by_set_name(cs_id):
 ####GET SET BY MTGJSON CODE
 ####THIS MATCHES *.json file
 @sets.route(current_version + "/sets/mtgjson/<mtgjson_code>")
-@limiter.limit("50/minute")
+@limiter.limit("60/minute")
 @cache.cached(timeout=86400)
 def get_set_by_mtgjson_code(mtgjson_code):
 

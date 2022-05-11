@@ -53,7 +53,7 @@ def get_all_ids():
 
 ####SEARCH BY CARD NAME
 @cards.route(current_version + 'cards/search')
-@limiter.limit("100/minute")
+@limiter.limit("120/minute")
 def search_by_card_name():
 
     if not request.args:
@@ -94,7 +94,7 @@ def search_by_card_name():
 ################# GET SINGLE CARD ############################
 ####GET CARD BY CS ID
 @cards.route(current_version + "/cards/cs/<cs_id>")
-@limiter.limit("100/minute")
+@limiter.limit("120/minute")
 @cache.cached(timeout=86400, query_string=True)
 def get_by_cs_id(cs_id):
     args = request.args
@@ -124,7 +124,7 @@ def get_by_cs_id(cs_id):
 
 ####GET CARD BY MTGJSON ID
 @cards.route(current_version + "/cards/mtgjson/<mtgjson_id>")
-@limiter.limit("100/minute")
+@limiter.limit("120/minute")
 @cache.cached(timeout=86400)
 def get_by_mtgjson_id(mtgjson_id):
 
