@@ -52,7 +52,7 @@ def get_all_ids():
 
 
 ####SEARCH BY CARD NAME
-@cards.route(current_version + 'cards/search')
+@cards.route(current_version + "cards/search")
 @limiter.limit("120/minute")
 def search_by_card_name():
 
@@ -147,12 +147,19 @@ def get_by_scryfall_id(scryfall_id):
 
     return jsonify(result)
 
+
 ####GET CARD BY NAME, CHEAPEAST PRICE
 @cards.route(current_version + "/cards/cheapest/<card_name>")
 @limiter.limit("120/minute")
 @cache.cached(timeout=86400)
 def get_cheapest_card(card_name):
 
-    q = Cards.query.join(Cards.prices).with_entities(Prices.price).filter(Cards.name == card_name).order_by(Prices.price.asc()).first_or_404()
+    q = (
+        Cards.query.join(Cards.prices)
+        .with_entities(Prices.price)
+        .filter(Cards.name == card_name)
+        .order_by(Prices.price.asc())
+        .first_or_404()
+    )
 
-    return (str(q[0]))
+    return str(q[0])
