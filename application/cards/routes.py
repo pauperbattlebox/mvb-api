@@ -38,7 +38,17 @@ def get_cache():
 @cache.cached(timeout=86400)
 def get_all_ids():
 
-    return redirect("https://cdn.multiversebridge.com/all_ids.json", code=302)
+    q = Meta.query.order_by(Meta.last_updated.desc()).first_or_404()
+
+    result = meta_schema.dump(q)
+
+    p = Cards.query.with_entities(
+        Cards.cs_id, Cards.mtgjson_id, Cards.scryfall_id
+    ).all()
+
+    result["cards"] = cards_schema.dump(p)
+
+    return jsonify(result)
 
 ####SEARCH BY CARD NAME
 @cards.route(current_version + "cards/search")
