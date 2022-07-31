@@ -25,11 +25,7 @@ def new_set():
 def test_client():
     flask_app = create_app()
 
-    flask_app.config.from_pyfile("test_config.py")
-
-    limiter.init_app(flask_app)
-
-    limiter.enabled = False
+    flask_app.config["RATELIMIT_STORAGE_URI"] = "memory://"    
 
     with flask_app.test_client() as testing_client:
         with flask_app.app_context():
