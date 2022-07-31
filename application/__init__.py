@@ -12,9 +12,6 @@ def create_app():
     # app.config.from_pyfile("config.py")
     app.config.from_object("application.config.ProdConfig")
 
-
-    
-
     db.init_app(app)
     cache.init_app(app)
     limiter.init_app(app)

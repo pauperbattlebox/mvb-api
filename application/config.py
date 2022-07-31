@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 basedir = path.abspath(path.dirname(__file__))
 load_dotenv(path.join(basedir, ".env"))
 
+
 class Config:
 
     FLASK_ENV = "production"
@@ -21,4 +22,4 @@ class ProdConfig(Config):
 
 class TestConfig(Config):
     RATELIMIT_ENABLED = False
-    RATELIMIT_STORAGE_URI = 'memory://'
+    RATELIMIT_STORAGE_URI = "memory://"

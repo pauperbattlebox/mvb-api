@@ -27,6 +27,6 @@ def test_client():
 
     flask_app.config.from_object("application.config.TestConfig")
 
-    with flask_app.test_client() as testing_client:        
+    with flask_app.test_client() as testing_client:
         with flask_app.app_context():
             yield testing_client
