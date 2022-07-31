@@ -3,7 +3,7 @@
 
 name: Python application
 env:
-      GITHUB_TOKEN: ${{ secrets.REDISTOGO_URL }}
+      REDISTOGO_URL: ${{ secrets.REDISTOGO_URL }}
 
 on:
   push:
