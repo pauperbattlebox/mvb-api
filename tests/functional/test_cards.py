@@ -5,7 +5,7 @@ def test_index():
 
     app = create_app()
 
-    #app.config.from_pyfile("config.py")
+    app.config.from_pyfile("config.py")
 
     with flask_app.test_client() as test_client:
 
