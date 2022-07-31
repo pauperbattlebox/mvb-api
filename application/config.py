@@ -28,3 +28,4 @@ class ProdConfig(Config):
 
 class TestConfig(Config):
     RATELIMIT_ENABLED = False
+    RATELIMIT_STORAGE_URI = 'memory://'

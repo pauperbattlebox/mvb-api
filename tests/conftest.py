@@ -25,6 +25,10 @@ def new_set():
 def test_client():
     flask_app = create_app()
 
+    limiter = Limiter(flask_app)
+
+    limiter.enabled = False
+
     flask_app.config.from_object("application.config.TestConfig")
 
     with flask_app.test_client() as testing_client:
