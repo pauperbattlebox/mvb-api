@@ -29,4 +29,4 @@ class ProdConfig(Config):
 
 
 class TestConfig(Config):
-    RATELIMIT_STORAGE_URI = "memory://"
+    RATELIMIT_STORAGE_URI = from_string("memory://")
