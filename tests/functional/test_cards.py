@@ -1,13 +1,13 @@
-from application import create_app
+def test_index(test_client):
+
+    response = test_client.get("/")
+
+    assert response.status_code == 200
+    assert b"Cardsphere community-built project" in response.data
 
 
-def test_index():
+def test_cards_post(test_client):
 
-    flask_app = create_app()
+    response = test_client.post("/api/v1/cards/cs/1")
 
-    with flask_app.test_client() as test_client:
-
-        response = test_client.get("/")
-
-        assert response.status_code == 200
-        assert b"Cardsphere community-built project" in response.data
+    assert response.status_code == 405
