@@ -3,6 +3,8 @@ import pytest
 from application import create_app
 from application.models import Cards, Sets
 
+from application.extensions import limiter
+
 
 @pytest.fixture(scope="module")
 def new_card():
@@ -25,6 +27,10 @@ def test_client():
     flask_app = create_app()
 
     flask_app.config.from_pyfile("test_config.py")
+
+    limiter.init_app(flask_app)
+
+    limiter.enabled = False
 
     with flask_app.test_client() as testing_client:
         with flask_app.app_context():
