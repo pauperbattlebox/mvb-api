@@ -1,9 +1,8 @@
 import pytest
 
 from application import create_app
-from application.models import Cards, Sets
-
 from application.extensions import limiter
+from application.models import Cards, Sets
 
 
 @pytest.fixture(scope="module")
