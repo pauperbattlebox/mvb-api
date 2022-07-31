@@ -1,6 +1,6 @@
 from flask import Blueprint, abort
 from flask import current_app as app
-from flask import jsonify, request, redirect
+from flask import jsonify, redirect, request
 from marshmallow.exceptions import ValidationError
 
 from application import cache, current_version, limiter
@@ -38,6 +38,7 @@ def get_cache():
 def get_all_ids():
 
     return redirect("https://cdn.multiversebridge.com/all_ids.json", code=302)
+
 
 ####SEARCH BY CARD NAME
 @cards.route(current_version + "cards/search")
