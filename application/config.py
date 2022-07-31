@@ -12,10 +12,12 @@ load_dotenv(path.join(basedir, ".env"))
 # RATELIMIT_STRATEGY = "moving-window"
 # JSON_SORT_KEYS = False
 
+
 class Config:
 
-    FLASK_ENV = 'production'
+    FLASK_ENV = "production"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+
 
 class ProdConfig(Config):
 
@@ -24,6 +26,7 @@ class ProdConfig(Config):
     RATELIMIT_STORAGE_URI = environ.get("REDISTOGO_URL")
     RATELIMIT_STRATEGY = "moving-window"
     JSON_SORT_KEYS = False
+
 
 class TestConfig(Config):
     RATELIMIT_STORAGE_URI = "memory://"
