@@ -3,9 +3,9 @@ from application import create_app
 
 def test_index():
 
-    flask_app = create_app()
+    app = create_app()
 
-    flask_app.config.from_pyfile("config.py")   
+    app.config.from_pyfile("config.py")
 
     with flask_app.test_client() as test_client:
 
