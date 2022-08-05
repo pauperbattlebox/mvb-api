@@ -4,6 +4,7 @@
 name: Python application
 env:
       REDISTOGO_URL: ${{ secrets.REDISTOGO_URL }}
+      SQLALCHEMY_DATABASE_URI: ${{ secrets.SQLALCHEMY_DATABASE_URI }}
 
 on:
   push:
