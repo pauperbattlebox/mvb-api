@@ -34,5 +34,5 @@ jobs:
     - name: Test with pytest
       run: |
         python -m pytest --cov
-        python isort .
-        python black .
+        isort .
+        black .
