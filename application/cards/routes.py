@@ -11,6 +11,7 @@ from application.schemas import (
     cards_schema,
     cardssearchschema,
     meta_schema,
+    discordsearchschema
 )
 
 cards = Blueprint("cards", __name__)
@@ -152,3 +153,62 @@ def get_cheapest_card(card_name):
     )
 
     return str(q[0])
+
+####DISCORD BOT ROUTES
+####GET CS ID BY CARD NAME AND MTGJSON IF INCLUDED
+@cards.route(current_version + "/discord/cards/search")
+@limiter.limit("120/minute")
+def discord_search_by_card_name():
+
+    if not request.args or "name" not in request.args:
+        abort(400, "name missing")
+
+    try:
+        args = discordsearchschema.load(request.args)
+
+    except ValidationError as e:
+        abort(400, e.messages)
+
+    q = Cards.query.with_entities(Cards.cs_id)
+
+    if "name" in args and args["name"] != None:
+
+        search_term = args["name"]
+        search = f"%{search_term}%"
+        q = q.filter(Cards.name.ilike(search))
+
+    if "mtgjson_code" in args and args["mtgjson_code"] != None:
+
+        args_mtgjson_code = args["mtgjson_code"]
+
+        q = q.filter(Cards.mtgjson_code==args_mtgjson_code)
+
+    q = q.first_or_404()
+
+    result = card_schema.dump(q)
+
+    return jsonify(result)
+
+####GET CARD PRICES BY NAME
+@cards.route(current_version + "/discord/cards/price/<card_name>")
+@limiter.limit("120/minute")
+def get_prices_by_card_name(card_name):
+
+    q = (
+        Cards.query.join(Cards.prices)
+        .with_entities(Cards.edition, Cards.name, Prices.price)
+        .filter(Cards.name.ilike(f"%{card_name}%"))
+        .limit(20)
+        .all()
+    )
+
+    if len(q) <= 0:
+        abort(400, "Nothing found")
+    #q = Cards.query.filter(Cards.name == card_name).limit(20).all()
+
+    result = dict()
+
+    for i in q:
+        result[i.name] = i.edition + " - " + str(i[2])
+
+    return jsonify(result)
