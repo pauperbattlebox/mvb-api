@@ -196,19 +196,34 @@ def get_prices_by_card_name(card_name):
 
     q = (
         Cards.query.join(Cards.prices)
-        .with_entities(Cards.edition, Cards.name, Prices.price)
+        .with_entities(Cards.edition, Cards.name, Cards.is_foil, Prices.price)
         .filter(Cards.name.ilike(f"%{card_name}%"))
-        .limit(20)
+        .limit(10)
         .all()
     )
 
+    print(q)
     if len(q) <= 0:
         abort(400, "Nothing found")
     #q = Cards.query.filter(Cards.name == card_name).limit(20).all()
 
-    result = dict()
+    result = []
 
     for i in q:
-        result[i.name] = i.edition + " - " + str(i[2])
+        temp_dict = dict()
+
+        if i.is_foil == True:
+            temp_dict["name"] = i.name
+            temp_dict["edition"] = i.edition
+            temp_dict["price"] = f"${str(round((i[3]), 2))}" + " - FOIL"
+
+            result.append(temp_dict)
+
+        else:
+            temp_dict["name"] = i.name
+            temp_dict["edition"] = i.edition
+            temp_dict["price"] = f"${str(round((i[3]), 2))}"
+
+            result.append(temp_dict)
 
     return jsonify(result)
