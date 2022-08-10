@@ -15,7 +15,7 @@ class Config:
 class ProdConfig(Config):
 
     SQLALCHEMY_DATABASE_URI = environ.get("SQLALCHEMY_DATABASE_URI")
-    RATELIMIT_STORAGE_URI = environ.get("REDISTOGO_URL")
+    RATELIMIT_STORAGE_URI = environ.get("OPENREDIS_URL")
     RATELIMIT_STRATEGY = "moving-window"
     JSON_SORT_KEYS = False
 
