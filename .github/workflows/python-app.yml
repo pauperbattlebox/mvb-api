@@ -3,7 +3,7 @@
 
 name: Python application
 env:
-      REDISTOGO_URL: ${{ secrets.OPENREDIS_URL }}
+      OPENREDIS_URL: ${{ secrets.OPENREDIS_URL }}
       SQLALCHEMY_DATABASE_URI: ${{ secrets.SQLALCHEMY_DATABASE_URI }}
 
 on:
