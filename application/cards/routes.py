@@ -202,10 +202,8 @@ def get_prices_by_card_name(card_name):
         .all()
     )
 
-    print(q)
     if len(q) <= 0:
         abort(400, "Nothing found")
-    #q = Cards.query.filter(Cards.name == card_name).limit(20).all()
 
     result = []
 

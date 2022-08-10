@@ -12,6 +12,6 @@ load_dotenv(path.join(basedir, ".env"))
 db = SQLAlchemy()
 
 cache = Cache(
-    config={"CACHE_TYPE": "RedisCache", "CACHE_REDIS_URL": environ.get("REDISTOGO_URL")}
+    config={"CACHE_TYPE": "RedisCache", "CACHE_REDIS_URL": environ.get("OPENREDIS_URL")}
 )
 limiter = Limiter(key_func=get_remote_address)
