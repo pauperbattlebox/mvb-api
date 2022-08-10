@@ -203,7 +203,7 @@ def get_prices_by_card_name(card_name):
     )
 
     if len(q) <= 0:
-        abort(400, "Nothing found")
+        abort(404, "Nothing found")
 
     result = []
 
