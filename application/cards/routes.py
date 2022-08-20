@@ -10,8 +10,8 @@ from application.schemas import (
     card_with_related_printings_schema,
     cards_schema,
     cardssearchschema,
+    discordsearchschema,
     meta_schema,
-    discordsearchschema
 )
 
 cards = Blueprint("cards", __name__)
@@ -154,14 +154,17 @@ def get_cheapest_card(card_name):
 
     return str(q[0])
 
+
 ####DISCORD BOT ROUTES
 ####GET CS ID BY CARD NAME AND MTGJSON IF INCLUDED
 @cards.route(current_version + "/discord/cards/search")
 @limiter.limit("120/minute")
 def discord_search_by_card_name():
 
-    if not request.args or "name" not in request.args:
+    if not request.args or "name" not in request.args or request.args["name"] == "":
         abort(400, "name missing")
+
+    print(request.args)
 
     try:
         args = discordsearchschema.load(request.args)
@@ -181,13 +184,14 @@ def discord_search_by_card_name():
 
         args_mtgjson_code = args["mtgjson_code"]
 
-        q = q.filter(Cards.mtgjson_code==args_mtgjson_code)
+        q = q.filter(Cards.mtgjson_code == args_mtgjson_code)
 
     q = q.first_or_404()
 
     result = card_schema.dump(q)
 
     return jsonify(result)
+
 
 ####GET CARD PRICES BY NAME
 @cards.route(current_version + "/discord/cards/price/<card_name>")
@@ -203,7 +207,7 @@ def get_prices_by_card_name(card_name):
     )
 
     if len(q) <= 0:
-        abort(404, "Nothing found")
+        abort(404)
 
     result = []
 
