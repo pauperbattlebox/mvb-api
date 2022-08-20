@@ -164,8 +164,6 @@ def discord_search_by_card_name():
     if not request.args or "name" not in request.args or request.args["name"] == "":
         abort(400, "name missing")
 
-    print(request.args)
-
     try:
         args = discordsearchschema.load(request.args)
 
