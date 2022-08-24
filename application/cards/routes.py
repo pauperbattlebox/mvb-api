@@ -175,7 +175,7 @@ def discord_search_by_card_name():
     if "name" in args and args["name"] != None:
 
         search_term = args["name"]
-        search = f"%{search_term}%"
+        search = f"{search_term}%"
         q = q.filter(Cards.name.ilike(search))
 
     if "mtgjson_code" in args and args["mtgjson_code"] != None:
@@ -199,7 +199,7 @@ def get_prices_by_card_name(card_name):
     q = (
         Cards.query.join(Cards.prices)
         .with_entities(Cards.edition, Cards.name, Cards.is_foil, Prices.price)
-        .filter(Cards.name.ilike(f"%{card_name}%"))
+        .filter(Cards.name.ilike(f"{card_name}%"))
         .limit(10)
         .all()
     )
