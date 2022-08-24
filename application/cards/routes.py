@@ -200,6 +200,7 @@ def get_prices_by_card_name(card_name):
         Cards.query.join(Cards.prices)
         .with_entities(Cards.edition, Cards.name, Cards.is_foil, Prices.price)
         .filter(Cards.name.ilike(f"{card_name}%"))
+        .order_by(Cards.name.asc())
         .limit(10)
         .all()
     )
