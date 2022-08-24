@@ -56,6 +56,17 @@ class CardsSearchSchema(Schema):
 
 cardssearchschema = CardsSearchSchema()
 
+
+class DiscordCardsSearchSchema(Schema):
+    name = fields.Str()
+    mtgjson_code = fields.Str()
+
+    class Meta:
+        unknown = EXCLUDE
+
+
+discordsearchschema = DiscordCardsSearchSchema()
+
 price_schema = PricesSchema()
 prices_schema = PricesSchema(many=True)
 
