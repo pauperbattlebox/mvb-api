@@ -216,14 +216,14 @@ def get_prices_by_card_name(card_name):
         if i.is_foil == True:
             temp_dict["name"] = i.name
             temp_dict["edition"] = i.edition
-            temp_dict["price"] = f"${str(round((i[3]), 2))}" + " - FOIL"
+            temp_dict["price"] = f"${i[3]:.2f}" + " - FOIL"
 
             result.append(temp_dict)
 
         else:
             temp_dict["name"] = i.name
             temp_dict["edition"] = i.edition
-            temp_dict["price"] = f"${str(round((i[3]), 2))}"
+            temp_dict["price"] = f"${i[3]:.2f}"
 
             result.append(temp_dict)
 
