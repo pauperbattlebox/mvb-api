@@ -191,19 +191,37 @@ def discord_search_by_card_name():
     return jsonify(result)
 
 
-####GET CARD PRICES BY NAME
-@cards.route(current_version + "/discord/cards/price/<card_name>")
+####GET CARD PRICES BY NAME AND MTGJSON CODE
+@cards.route(current_version + "/discord/cards/price")
 @limiter.limit("120/minute")
-def get_prices_by_card_name(card_name):
+def get_prices_by_card_name():
 
-    q = (
-        Cards.query.join(Cards.prices)
-        .with_entities(Cards.edition, Cards.name, Cards.is_foil, Prices.price)
-        .filter(Cards.name.ilike(f"{card_name}%"))
-        .order_by(Cards.name.asc())
-        .limit(10)
-        .all()
+    if not request.args or "name" not in request.args or request.args["name"] == "":
+        abort(400, "name missing")
+
+    try:
+        args = discordsearchschema.load(request.args)
+
+    except ValidationError as e:
+        abort(400, e.messages)
+
+    q = Cards.query.join(Cards.prices).with_entities(
+        Cards.edition, Cards.name, Cards.is_foil, Prices.price
     )
+
+    if "name" in args and args["name"] != None:
+
+        search_term = args["name"]
+        search = f"{search_term}%"
+        q = q.filter(Cards.name.ilike(search))
+
+    if "mtgjson_code" in args and args["mtgjson_code"] != None:
+
+        args_mtgjson_code = args["mtgjson_code"]
+
+        q = q.filter(Cards.mtgjson_code == args_mtgjson_code)
+
+    q = q.order_by(Cards.name.asc()).limit(10).all()
 
     if len(q) <= 0:
         abort(404)
@@ -216,14 +234,14 @@ def get_prices_by_card_name(card_name):
         if i.is_foil == True:
             temp_dict["name"] = i.name
             temp_dict["edition"] = i.edition
-            temp_dict["price"] = f"${i[3]:.2f}" + " - FOIL"
+            temp_dict["price"] = f"${i.price:.2f}" + " - FOIL"
 
             result.append(temp_dict)
 
         else:
             temp_dict["name"] = i.name
             temp_dict["edition"] = i.edition
-            temp_dict["price"] = f"${i[3]:.2f}"
+            temp_dict["price"] = f"${i.price:.2f}"
 
             result.append(temp_dict)
 

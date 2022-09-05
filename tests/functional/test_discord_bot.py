@@ -46,15 +46,43 @@ def test_card_search_wrong_params(test_client):
 
 def test_card_price(test_client):
 
-    response = test_client.get("/api/v1/discord/cards/price/Black Lotus")
+    response = test_client.get("/api/v1/discord/cards/price?name=Black Lotus")
 
     assert response.status_code == 200
     assert b"Black Lotus" in response.data
 
 
-def test_card_price_404(test_client):
+def test_card_price_name_and_mtgjson_code(test_client):
 
-    response = test_client.get("/api/v1/discord/cards/price/Josh, Bridge Four")
+    response = test_client.get(
+        "/api/v1/discord/cards/price?name=Black Lotus&mtgjson_code=LEA"
+    )
 
-    assert response.status_code == 404
-    assert b"404 Not Found" in response.data
+    assert response.status_code == 200
+    assert b"Black Lotus" in response.data
+    assert b"Limited Edition Alpha" in response.data
+    assert b"Limited Edition Beta" not in response.data
+
+
+def test_card_price_no_params(test_client):
+
+    response = test_client.get("/api/v1/discord/cards/price")
+
+    assert response.status_code == 400
+    assert b"name missing" in response.data
+
+
+def test_card_price_no_name(test_client):
+
+    response = test_client.get("/api/v1/discord/cards/price?name=")
+
+    assert response.status_code == 400
+    assert b"name missing" in response.data
+
+
+def test_card_price_wrong_params(test_client):
+
+    response = test_client.get("/api/v1/discord/cards/price?day=night")
+
+    assert response.status_code == 400
+    assert b"name missing" in response.data
