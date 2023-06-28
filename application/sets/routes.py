@@ -2,6 +2,8 @@ from flask import Blueprint, abort
 from flask import current_app as app
 from flask import jsonify
 
+from application.repositories.set_repository import *
+
 from application import cache, current_version, limiter
 from application.models import Cards, Sets
 from application.schemas import (
@@ -19,8 +21,8 @@ sets = Blueprint("sets", __name__)
 @limiter.limit("10/hour")
 @cache.cached(timeout=86400)
 def get_all_sets():
-
-    q = Sets.query.all()
+    
+    q = get_all_sets_from_db()
 
     result = sets_schema.dump(q)
 
