@@ -5,12 +5,12 @@ from marshmallow.exceptions import ValidationError
 
 from application import cache, current_version, limiter
 from application.models import Cards, Meta, Prices
+from application.repositories.card_repository import *
 from application.schemas import (
     card_schema,
     card_with_related_printings_schema,
     cards_schema,
     cardssearchschema,
-    discordsearchschema,
     meta_schema,
 )
 
@@ -55,26 +55,7 @@ def search_by_card_name():
     except ValidationError as e:
         abort(400, e.messages)
 
-    filtered_args = dict()
-
-    for (k, v) in args.items():
-        if v and k != "name" and k != "is_foil":
-            filtered_args[k] = v
-
-    q = Cards.query
-
-    if "name" in args and args["name"] != None:
-
-        search_term = args["name"]
-        search = f"%{search_term}%"
-        q = q.filter(Cards.name.ilike(search))
-
-    if "is_foil" in args and args["is_foil"] != None:
-        q = q.filter(Cards.is_foil == args["is_foil"])
-
-    q = q.filter_by(**filtered_args).limit(100)
-
-    q.all()
+    q = get_cards_by_attribue(args)
 
     result = cards_schema.dump(q)
 
@@ -89,7 +70,7 @@ def search_by_card_name():
 def get_by_cs_id(cs_id):
     args = request.args
 
-    q = Cards.query.filter(Cards.cs_id == cs_id).first_or_404()
+    q = get_card_by_cs_id(cs_id)
 
     result = card_with_related_printings_schema.dump(q)
 
@@ -112,13 +93,13 @@ def get_by_cs_id(cs_id):
     return jsonify(result)
 
 
-####GET CARD BY MTGJSON ID
+####GET CARDS BY MTGJSON ID
 @cards.route(current_version + "/cards/mtgjson/<mtgjson_id>")
 @limiter.limit("120/minute")
 @cache.cached(timeout=86400)
 def get_by_mtgjson_id(mtgjson_id):
 
-    q = Cards.query.filter(Cards.mtgjson_id == mtgjson_id).all()
+    q = get_cards_by_mtgjson_id(mtgjson_id)
 
     result = cards_schema.dump(q)
 
@@ -131,118 +112,8 @@ def get_by_mtgjson_id(mtgjson_id):
 @cache.cached(timeout=86400)
 def get_by_scryfall_id(scryfall_id):
 
-    q = Cards.query.filter(Cards.scryfall_id == scryfall_id).all()
+    q = get_cards_by_scryfall_id(scryfall_id)
 
     result = cards_schema.dump(q)
-
-    return jsonify(result)
-
-
-####GET CARD BY NAME, CHEAPEAST PRICE
-@cards.route(current_version + "/cards/cheapest/<card_name>")
-@limiter.limit("120/minute")
-@cache.cached(timeout=86400)
-def get_cheapest_card(card_name):
-
-    q = (
-        Cards.query.join(Cards.prices)
-        .with_entities(Prices.price)
-        .filter(Cards.name == card_name)
-        .order_by(Prices.price.asc())
-        .first_or_404()
-    )
-
-    return str(q[0])
-
-
-####DISCORD BOT ROUTES
-####GET CS ID BY CARD NAME AND MTGJSON IF INCLUDED
-@cards.route(current_version + "/discord/cards/search")
-@limiter.limit("120/minute")
-def discord_search_by_card_name():
-
-    if not request.args or "name" not in request.args or request.args["name"] == "":
-        abort(400, "name missing")
-
-    try:
-        args = discordsearchschema.load(request.args)
-
-    except ValidationError as e:
-        abort(400, e.messages)
-
-    q = Cards.query.with_entities(Cards.cs_id)
-
-    if "name" in args and args["name"] != None:
-
-        search_term = args["name"]
-        search = f"{search_term}%"
-        q = q.filter(Cards.name.ilike(search))
-
-    if "mtgjson_code" in args and args["mtgjson_code"] != None:
-
-        args_mtgjson_code = args["mtgjson_code"]
-
-        q = q.filter(Cards.mtgjson_code == args_mtgjson_code)
-
-    q = q.first_or_404()
-
-    result = card_schema.dump(q)
-
-    return jsonify(result)
-
-
-####GET CARD PRICES BY NAME AND MTGJSON CODE
-@cards.route(current_version + "/discord/cards/price")
-@limiter.limit("120/minute")
-def get_prices_by_card_name():
-
-    if not request.args or "name" not in request.args or request.args["name"] == "":
-        abort(400, "name missing")
-
-    try:
-        args = discordsearchschema.load(request.args)
-
-    except ValidationError as e:
-        abort(400, e.messages)
-
-    q = Cards.query.join(Cards.prices).with_entities(
-        Cards.edition, Cards.name, Cards.is_foil, Prices.price
-    )
-
-    if "name" in args and args["name"] != None:
-
-        search_term = args["name"]
-        search = f"{search_term}%"
-        q = q.filter(Cards.name.ilike(search))
-
-    if "mtgjson_code" in args and args["mtgjson_code"] != None:
-
-        args_mtgjson_code = args["mtgjson_code"]
-
-        q = q.filter(Cards.mtgjson_code == args_mtgjson_code)
-
-    q = q.order_by(Cards.name.asc()).limit(10).all()
-
-    if len(q) <= 0:
-        abort(404)
-
-    result = []
-
-    for i in q:
-        temp_dict = dict()
-
-        if i.is_foil == True:
-            temp_dict["name"] = i.name
-            temp_dict["edition"] = i.edition
-            temp_dict["price"] = f"${i.price:.2f}" + " - FOIL"
-
-            result.append(temp_dict)
-
-        else:
-            temp_dict["name"] = i.name
-            temp_dict["edition"] = i.edition
-            temp_dict["price"] = f"${i.price:.2f}"
-
-            result.append(temp_dict)
 
     return jsonify(result)
