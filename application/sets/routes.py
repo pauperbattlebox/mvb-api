@@ -67,7 +67,8 @@ def get_set_by_set_name(cs_id):
 @cache.cached(timeout=86400)
 def get_set_by_mtgjson_code(mtgjson_code):
 
-    q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code.upper()).all()
+    #q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code.upper()).all()
+    q = get_sets_from_db_by_mtgjson_code(mtgjson_code)
 
     if len(q) < 1:
         q = Cards.query.filter(Cards.mtgjson_code == mtgjson_code.upper()).all()
