@@ -14,6 +14,7 @@ def get_cards_by_mtgjson_id(mtgjson_id: str) -> Cards:
 
     return cards
 
+
 def get_cards_by_mtgjson_code(mtgjson_code: str) -> Cards:
 
     cards = Cards.query.filter(Cards.mtgjson_code == mtgjson_code.upper()).all()

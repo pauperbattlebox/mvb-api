@@ -7,7 +7,6 @@ from application import cache, current_version, limiter
 from application.models import Cards, Meta, Prices
 from application.repositories.card_repository import *
 from application.schemas import (
-    card_schema,
     card_with_related_printings_schema,
     cards_schema,
     cardssearchschema,
