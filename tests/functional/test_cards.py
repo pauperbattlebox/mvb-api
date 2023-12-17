@@ -41,6 +41,7 @@ def test_card_search_no_params(test_client):
     response = test_client.get("/api/v1/cards/search")
 
     assert response.status_code == 400
+    assert b"Please enter at least one query parameter" in response.data
 
 
 def test_card_search_name(test_client):

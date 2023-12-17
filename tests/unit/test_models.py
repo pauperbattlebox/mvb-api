@@ -1,5 +1,3 @@
-from application.models import Cards, Sets
-
 
 def test_new_card(new_card):
 
