@@ -1,4 +1,3 @@
-
 def test_new_card(new_card):
 
     assert new_card.cs_id == 1

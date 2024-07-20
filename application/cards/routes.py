@@ -40,6 +40,14 @@ def get_all_ids():
     return redirect("https://cdn.multiversebridge.com/all_ids.json", code=302)
 
 
+####GET ALL CARDS INCLUDING PRICE AND FOIL FLAG
+@cards.route(current_version + "bulk")
+@limiter.limit("5/hour")
+def get_bulk():
+
+    return redirect("https://cdn.multiversebridge.com/mtgjson_build.json", code=302)
+
+
 ####SEARCH BY CARD NAME
 @cards.route(current_version + "cards/search")
 @limiter.limit("120/minute")

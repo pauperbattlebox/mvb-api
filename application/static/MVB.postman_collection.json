@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b7e7c331-aa2a-4557-87fe-c4789af7a18f",
+		"_postman_id": "1ecde794-9e17-4228-8afc-c28b15ef3102",
 		"name": "Multiverse Bridge",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -44,6 +44,35 @@
 						"api",
 						"v1",
 						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET /bulk",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.multiversebridge.com/api/v1/bulk",
+					"protocol": "https",
+					"host": [
+						"www",
+						"multiversebridge",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"bulk"
+					],
+					"query": [
+						{
+							"key": "includeRelatedPrintings",
+							"value": "true",
+							"disabled": true
+						}
 					]
 				}
 			},
