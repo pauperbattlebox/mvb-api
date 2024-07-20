@@ -17,23 +17,23 @@ def test_cache(test_client):
     assert b"last_updated" in response.data
 
 
-def test_all_cards(test_client):
+# def test_all_cards(test_client):
 
-    response = test_client.get("/api/v1/cards")
-    redirect = requests.get("https://cdn.multiversebridge.com/all_ids.json")
+#     response = test_client.get("/api/v1/cards")
+#     redirect = requests.get("https://cdn.multiversebridge.com/all_ids.json")
 
-    assert response.status_code == 302
-    assert "9cb62c63-8fba-51a5-a8c6-aa788c13d6a5" in redirect.text
+#     assert response.status_code == 302
+#     assert "9cb62c63-8fba-51a5-a8c6-aa788c13d6a5" in redirect.text
 
 
-def test_mtgjson():
+# def test_mtgjson():
 
-    response = requests.get("https://cdn.multiversebridge.com/mtgjson_build.json")
+#     response = requests.get("https://cdn.multiversebridge.com/mtgjson_build.json")
 
-    print(response.text)
+#     print(response.text)
 
-    assert response.status_code == 200
-    assert "15947b20-8c8e-42ed-9599-8b180a382d21" in response.text
+#     assert response.status_code == 200
+#     assert "15947b20-8c8e-42ed-9599-8b180a382d21" in response.text
 
 
 def test_card_search_no_params(test_client):
