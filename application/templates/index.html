@@ -101,6 +101,17 @@
                 <li>
                 <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
                 </a>
+                /bulk
+              </li>
+              <div class="list-info" x-show="open">
+                <li>Returns the IDs for all cards in the database, including is_foil flag and latest price.</li>
+              </div>
+              </div>
+
+              <div class="list-item" x-data="{ open: false }" @click="open = ! open">
+                <li>
+                <a><i class="las la-plus" x-show="!open"></i></a><a><i class="las la-minus" x-show="open"></i>
+                </a>
                 /cards/cs/{cs_id}
               </li>
               <div class="list-info" x-show="open">
