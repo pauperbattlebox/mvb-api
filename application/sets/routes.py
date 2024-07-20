@@ -1,9 +1,11 @@
-from flask import Blueprint, abort
+from flask import Blueprint
 from flask import current_app as app
 from flask import jsonify
 
 from application import cache, current_version, limiter
 from application.models import Cards, Sets
+from application.repositories.card_repository import get_cards_by_mtgjson_code
+from application.repositories.set_repository import *
 from application.schemas import (
     cards_schema,
     set_with_cards_schema,
@@ -20,7 +22,7 @@ sets = Blueprint("sets", __name__)
 @cache.cached(timeout=86400)
 def get_all_sets():
 
-    q = Sets.query.all()
+    q = get_all_sets_from_db()
 
     result = sets_schema.dump(q)
 
@@ -33,7 +35,8 @@ def get_all_sets():
 @cache.cached(timeout=86400)
 def get_set_by_set_name(cs_id):
 
-    q = Sets.query.filter(Sets.cs_id == cs_id).first_or_404()
+    q = get_set_from_db_by_cs_id(cs_id)
+
     result = set_with_cards_schema.dump(q)
 
     d = (
@@ -65,10 +68,10 @@ def get_set_by_set_name(cs_id):
 @cache.cached(timeout=86400)
 def get_set_by_mtgjson_code(mtgjson_code):
 
-    q = Sets.query.filter(Sets.mtgjson_code == mtgjson_code.upper()).all()
+    q = get_sets_from_db_by_mtgjson_code(mtgjson_code)
 
     if len(q) < 1:
-        q = Cards.query.filter(Cards.mtgjson_code == mtgjson_code.upper()).all()
+        q = get_cards_by_mtgjson_code(mtgjson_code)
 
         result = cards_schema.dump(q)
         return jsonify(result)

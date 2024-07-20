@@ -24,7 +24,7 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
 <details>
   <summary>GET /cards</summary>
   
-  Returns the IDs for all cards in the database as well as the current state of the cache. (~11 MB)
+  Returns the IDs for all cards in the database as well as the current state of the cache. (~13 MB)
   
   ```
   {
@@ -38,6 +38,25 @@ The project leverages existing tools MTGJSON and Scryfall to provide the data to
       ...
     ]
   }
+  ```
+</details>
+
+<details>
+  <summary>GET /bulk</summary>
+  
+  Returns the IDs for all cards in the database as well as the is_foil flag and latest price. (~17 MB)
+  
+  ```
+  [
+    {
+        "cs_id": 20522,
+        "mtgjson_id": "9cb62c63-8fba-51a5-a8c6-aa788c13d6a5",
+        "scryfall_id": "31740fe9-27d2-416e-93de-509ac1a7b7cd",
+        "is_foil": true,
+        "price": 0.31
+    },
+    ...
+  ]
   ```
 </details>
 
