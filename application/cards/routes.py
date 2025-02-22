@@ -15,6 +15,7 @@ from application.schemas import (
 
 cards = Blueprint("cards", __name__)
 
+
 ####GET CACHE LAST UPDATED TIMESTAMP
 @cards.route(current_version + "cache")
 @limiter.limit("100/minute")
@@ -124,3 +125,20 @@ def get_by_scryfall_id(scryfall_id):
     result = cards_schema.dump(q)
 
     return jsonify(result)
+
+
+####GET CHEAPEST CARD PRICE BY NAME
+@cards.route(current_version + "/cards/cheapest/<card_name>")
+@limiter.limit("120/minute")
+@cache.cached(timeout=86400)
+def get_cheapest_card(card_name):
+
+    q = (
+        Cards.query.join(Cards.prices)
+        .with_entities(Prices.price)
+        .filter(Cards.name == card_name)
+        .order_by(Prices.price.asc())
+        .first_or_404()
+    )
+
+    return str(q[0])

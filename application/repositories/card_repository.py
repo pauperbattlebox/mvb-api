@@ -33,7 +33,7 @@ def get_cards_by_attribue(args: dict) -> Cards:
 
     filtered_args = dict()
 
-    for (k, v) in args.items():
+    for k, v in args.items():
         if v and k != "name" and k != "is_foil":
             filtered_args[k] = v
 
